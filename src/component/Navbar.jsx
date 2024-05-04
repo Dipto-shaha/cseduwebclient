@@ -1,0 +1,81 @@
+import { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+
+const Navbar = () => {
+  // State to manage the navbar's visibility
+  const [nav, setNav] = useState(false);
+
+  // Toggle function to handle the navbar's display
+  const handleNav = () => {
+    setNav(!nav);
+  };
+
+  // Array containing navigation items
+  const navItems = [
+    { id: 1, text: "Home" },
+    { id: 2, text: "About" },
+    { id: 3, text: "Academic" },
+    { id: 4, text: "People" },
+    { id: 5, text: "Research" },
+    { id: 6, text: "Student" },
+    { id: 7, text: "Alumni" },
+    { id: 8, text: "Events" },
+    { id: 9, text: "Contact" }
+  ];
+
+  return (
+    <div className="bg-[#d2dde2] flex justify-between items-center h-20 mx-auto px-4 text-[#000] relative">
+      {/* Logo */}
+      <img
+        src="https://i.ibb.co/VwJ6FWY/CSEDULogo-removebg-preview.png"
+        className="w-20 h-20"
+        alt="Logo"
+      />
+      <h1 className="w-full text-3xl font-bold text-[#000]">CSEDU</h1>
+
+      {/* Desktop Navigation */}
+      <ul className="hidden md:flex">
+        {navItems.map((item) => (
+          <li
+            key={item.id}
+            className="p-4 hover:bg-[#00df9a] rounded-xl cursor-pointer duration-300 hover:text-black"
+          >
+            {item.text}
+          </li>
+        ))}
+      </ul>
+
+      {/* Mobile Navigation Icon */}
+      <div onClick={handleNav} className="block md:hidden">
+        { !nav && <AiOutlineMenu size={20} /> }
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      <ul
+        className={
+          nav
+            ? "fixed md:hidden right-0 top-0 w-[60%] h-full border-l border-l-gray-900 bg-[#d2dde2] ease-in-out duration-500"
+            : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 right-[-100%]"
+        }
+      >
+
+        {/* Close Button */}
+        <div className="absolute top-0 right-0 m-4">
+          <AiOutlineClose size={20} onClick={handleNav} />
+        </div>
+
+        {/* Mobile Navigation Items */}
+        {navItems.map((item) => (
+          <li
+            key={item.id}
+            className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600"
+          >
+            {item.text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Navbar;
