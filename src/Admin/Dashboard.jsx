@@ -2,18 +2,15 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   UserOutlined,
   UserDeleteOutlined,
-  AppstoreAddOutlined,
   UserAddOutlined,
-  UnorderedListOutlined,
-  OrderedListOutlined,
   TruckOutlined,
 } from "@ant-design/icons";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CiLogout } from "react-icons/ci";
 import { Layout, Menu, theme } from "antd";
-import { useContext } from "react";
-import { AuthContest } from "./Context";
+// import { useContext } from "react";
+// import { AuthContest } from "./Context";
 import axios from "axios";
 const { Header, Content, Footer, Sider } = Layout;
 import { useNavigate } from "react-router-dom";

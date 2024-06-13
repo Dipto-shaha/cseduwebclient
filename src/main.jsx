@@ -6,7 +6,7 @@ import Body from "./Body";
 import LoginPage from "./Admin/Login";
 import Context from "./Admin/Context";
 import Dashboard from "./Admin/Dashboard";
-import NewsForm from "./Admin/NewsForm";
+import NewsTable from "./Admin/NewsTable";
 import CreateEventForm from "./Admin/Create Event";
 import Home from "./Home";
 import About from "./About";
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/news",
-        element: <NewsForm></NewsForm>,
+        element: <NewsTable></NewsTable>,
       },
       {
         path:"/dashboard/event",

@@ -1,19 +1,15 @@
-import  { useState } from 'react';
-import { Table, Input, Button, Space } from 'antd';
+import { Table, Button, Space } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import useGetAllNews from '../hook/useGetAllNews';
+import { useState } from 'react';
 
-const initialData = [
-  { key: 1, title: 'News 1', date: '2024-06-01', content: 'Content 1' },
-  { key: 2, title: 'News 2', date: '2024-06-05', content: 'Content 2' },
-  { key: 3, title: 'News 3', date: '2024-06-03', content: 'Content 3' },
-];
 
 const NewsTable = () => {
-  const [data, setData] = useState(initialData);
+  const [data,setNewsList] = useGetAllNews();
+  //console.log("all data is ", data)
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
-
   let searchInput = null;
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -30,7 +26,7 @@ const NewsTable = () => {
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
-        <Input
+        <input
           ref={(node) => {
             searchInput = node;
           }}
@@ -81,35 +77,35 @@ const NewsTable = () => {
       ),
   });
 
-  const handleDelete = (key) => {
-    setData(data.filter((item) => item.key !== key));
+  const handleDelete = (id) => {
+    setNewsList(data.filter((item) => item.id !== id));
+    console.log("I am here" , id,data,data.filter((item) => item.id !== id))
   };
 
-  const handleUpdate = (key) => {
-    // Implement update logic here
-    console.log('Update item with key:', key);
+  const handleUpdate = (id) => {
+    console.log('Update item with id:', id);
   };
 
   const columns = [
     {
       title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
-      ...getColumnSearchProps('title'),
+      dataIndex: 'news_title',
+      key: 'news_title',
+      ...getColumnSearchProps('news_title'),
     },
     {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
-      sorter: (a, b) => new Date(a.date) - new Date(b.date),
+      sorter: (a, b) => new Date(a?.date) - new Date(b?.date),
     },
     {
       title: 'Action',
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <Button onClick={() => handleUpdate(record.key)}>Update</Button>
-          <Button danger onClick={() => handleDelete(record.key)}>Delete</Button>
+          <Button onClick={() => handleUpdate(record?.id)}>Update</Button>
+          <Button danger onClick={() => handleDelete(record?.id)}>Delete</Button>
         </Space>
       ),
     },
