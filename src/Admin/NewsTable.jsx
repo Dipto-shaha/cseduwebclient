@@ -1,64 +1,65 @@
-import { Table, Button, Space } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import Highlighter from 'react-highlight-words';
-import useGetAllNews from '../hook/useGetAllNews';
-import { useState } from 'react';
+import { Table, Button, Space, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
+import useGetAllNews from "../hook/useGetAllNews";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
+const { Search } = Input;
 
 const NewsTable = () => {
-  const [data,setNewsList] = useGetAllNews();
-  //console.log("all data is ", data)
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
-  let searchInput = null;
+  const [data, setNewsList] = useGetAllNews();
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  };
-
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText('');
+  const handleSearch = (value) => {
+    setSearchText(value);
+    setSearchedColumn("");
   };
 
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+    }) => (
       <div style={{ padding: 8 }}>
-        <input
+        <Input
           ref={(node) => {
-            searchInput = node;
+            setSearchText(node?.value || ""); // Set initial value of search input
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ marginBottom: 8, display: 'block' }}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() => handleSearch(selectedKeys[0], confirm)}
+          style={{ marginBottom: 8, display: "block" }}
         />
         <Space>
           <Button
             type="primary"
-            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            onClick={() => handleSearch(selectedKeys[0], confirm)}
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
           >
             Search
           </Button>
-          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          <Button
+            onClick={() => handleReset(clearFilters)}
+            size="small"
+            style={{ width: 90 }}
+          >
             Reset
           </Button>
         </Space>
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
-    onFilter: (value, record) =>
-      record[dataIndex]
-        ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
-        : '',
     onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.select(), 100);
@@ -67,52 +68,82 @@ const NewsTable = () => {
     render: (text) =>
       searchedColumn === dataIndex ? (
         <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
           searchWords={[searchText]}
           autoEscape
-          textToHighlight={text ? text.toString() : ''}
+          textToHighlight={text ? text.toString() : ""}
         />
       ) : (
         text
       ),
   });
 
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
+
   const handleDelete = (id) => {
     setNewsList(data.filter((item) => item.id !== id));
-    console.log("I am here" , id,data,data.filter((item) => item.id !== id))
   };
 
   const handleUpdate = (id) => {
-    console.log('Update item with id:', id);
+    console.log("Update item with id:", id);
   };
 
   const columns = [
     {
-      title: 'Title',
-      dataIndex: 'news_title',
-      key: 'news_title',
-      ...getColumnSearchProps('news_title'),
+      title: "Title",
+      dataIndex: "news_title",
+      key: "news_title",
+      ...getColumnSearchProps("news_title"),
     },
     {
-      title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
       sorter: (a, b) => new Date(a?.date) - new Date(b?.date),
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: "Action",
+      key: "action",
       render: (text, record) => (
         <Space size="middle">
           <Button onClick={() => handleUpdate(record?.id)}>Update</Button>
-          <Button danger onClick={() => handleDelete(record?.id)}>Delete</Button>
+          <Button danger onClick={() => handleDelete(record?.id)}>
+            Delete
+          </Button>
         </Space>
       ),
     },
   ];
 
+  const filteredData = searchText
+    ? data.filter((record) =>
+        columns.some((column) =>
+          record[column.dataIndex]
+            ?.toString()
+            .toLowerCase()
+            .includes(searchText.toLowerCase())
+        )
+      )
+    : data;
+
   return (
-    <Table columns={columns} dataSource={data} />
+    <div>
+      <div className="flex justify-between items-center">
+        <Search
+          placeholder="Search Title"
+          allowClear
+          enterButton
+          onSearch={handleSearch}
+          style={{ marginBottom: 16 }}
+          className="w-1/2"
+        />
+        <Button><Link to ="/dashboard/addnews">Add News</Link></Button>
+      </div>
+      <Table columns={columns} dataSource={filteredData} />
+    </div>
   );
 };
 

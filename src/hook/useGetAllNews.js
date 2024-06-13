@@ -7,8 +7,8 @@ export default function useGetAllNews() {
     async function getAllNews() {
         try {
             const res = await axios.get('/news/all');
-            setNewsList(res.data.data);
-            console.log(res.data.data)
+            setNewsList(res?.data?.data);
+            //console.log(res.data.data)
 
             return true;
         } catch (error) {
