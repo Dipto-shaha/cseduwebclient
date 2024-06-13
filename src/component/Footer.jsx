@@ -6,7 +6,11 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
         {/* Column 1 */}
         <div className="">
-          <img src="https://i.ibb.co/tKTXhQ6/CSEDULogo.png" className="w-24 mb-4 rounded-lg" alt="Logo" />
+          <img
+            src="https://i.ibb.co/tKTXhQ6/CSEDULogo.png"
+            className="w-24 mb-4 rounded-lg"
+            alt="Logo"
+          />
           <h4 className="text-xl mb-2">Contact</h4>
           <p>Department of Computer Science and Engineering</p>
           <p>
@@ -20,7 +24,7 @@ const Footer = () => {
             <strong>Hours:</strong> 10:00-18:00, Mon - Sat
           </p>
         </div>
-        
+
         {/* Column 2 */}
         <div>
           <div className="aspect-w-16 aspect-h-9">
@@ -59,11 +63,15 @@ const Footer = () => {
           <h4 className="text-xl mb-2">Install App</h4>
           <p>From App Store or Google Play</p>
           <div className="flex space-x-4 items-center mt-4">
-            <img src="/public/Img/play.jpg" className="w-16" alt="Play Store" />
-            <img src="/public/Img/app.jpg" className="w-16" alt="App Store" />
+            <img src="/Img/play.jpg" className="w-16" alt="Play Store" />
+            <img src="/Img/app.jpg" className="w-16" alt="App Store" />
           </div>
           <p className="mt-4">Secured Payment Gateways</p>
-          <img src="/public/Img/pay.png" className="w-32 mt-2" alt="Payment Gateways" />
+          <img
+            src="/Img/pay.png"
+            className="w-32 mt-2"
+            alt="Payment Gateways"
+          />
         </div>
       </div>
 

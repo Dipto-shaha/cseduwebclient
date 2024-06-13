@@ -1,26 +1,24 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  // State to manage the navbar's visibility
   const [nav, setNav] = useState(false);
 
-  // Toggle function to handle the navbar's display
   const handleNav = () => {
     setNav(!nav);
   };
 
-  // Array containing navigation items
   const navItems = [
-    { id: 1, text: "Home" },
-    { id: 2, text: "About" },
-    { id: 3, text: "Academic" },
-    { id: 4, text: "People" },
-    { id: 5, text: "Research" },
-    { id: 6, text: "Student" },
-    { id: 7, text: "Alumni" },
-    { id: 8, text: "Events" },
-    { id: 9, text: "Contact" }
+    { id: 1, text: "Home", path: "/" },
+    { id: 2, text: "About", path: "/about" },
+    { id: 3, text: "Academic", path: "/academic" },
+    { id: 4, text: "People", path: "/people" },
+    { id: 5, text: "Research", path: "/research" },
+    { id: 6, text: "Student", path: "/student" },
+    { id: 7, text: "Alumni", path: "/alumni" },
+    { id: 8, text: "Events", path: "/events" },
+    { id: 9, text: "Contact", path: "/contact" },
   ];
 
   return (
@@ -40,14 +38,14 @@ const Navbar = () => {
             key={item.id}
             className="p-4 hover:bg-[#00df9a] rounded-xl cursor-pointer duration-300 hover:text-black"
           >
-            {item.text}
+            <Link to={item.path}>{item.text}</Link>
           </li>
         ))}
       </ul>
 
       {/* Mobile Navigation Icon */}
       <div onClick={handleNav} className="block md:hidden">
-        { !nav && <AiOutlineMenu size={20} /> }
+        {!nav && <AiOutlineMenu size={20} />}
       </div>
 
       {/* Mobile Navigation Menu */}
@@ -58,7 +56,6 @@ const Navbar = () => {
             : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 right-[-100%]"
         }
       >
-
         {/* Close Button */}
         <div className="absolute top-0 right-0 m-4">
           <AiOutlineClose size={20} onClick={handleNav} />
@@ -70,7 +67,9 @@ const Navbar = () => {
             key={item.id}
             className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600"
           >
-            {item.text}
+            <Link to={item.path} onClick={handleNav}>
+              {item.text}
+            </Link>
           </li>
         ))}
       </ul>

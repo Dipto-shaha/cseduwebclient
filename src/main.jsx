@@ -6,11 +6,10 @@ import Body from "./Body";
 import LoginPage from "./Admin/Login";
 import Context from "./Admin/Context";
 import Dashboard from "./Admin/Dashboard";
-import NewsTable from "./Admin/NewsTable";
 import NewsForm from "./Admin/NewsForm";
 import CreateEventForm from "./Admin/Create Event";
-import CarouselHome from "./component/CarouselHome";
 import Home from "./Home";
+import About from "./About";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +19,10 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home></Home>
+      },
+      {
+        path:"/about",
+        element:<About></About>
       }
     ]
   },

@@ -1,4 +1,5 @@
 import CarouselHome from "./component/CarouselHome";
+import EventCard from "./component/EventCard";
 import NewsCard from "./component/NewsCard";
 const Home = () => {
   return (
@@ -38,6 +39,14 @@ const Home = () => {
             <NewsCard></NewsCard>
             <NewsCard></NewsCard>
             <NewsCard></NewsCard>
+        </div>
+      </div>
+      <div className="my-10">
+        <p className="text-center text-4xl font-bold my-4">Events </p>
+        <div className="grid grid-cols-3 gap-10">
+            <EventCard></EventCard>
+            <EventCard></EventCard>
+            <EventCard></EventCard>
         </div>
       </div>
     </div>
