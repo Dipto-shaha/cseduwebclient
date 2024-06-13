@@ -9,7 +9,7 @@ const useAxiosPrivate = () => {
     const navigate = useNavigate();
 
     axiosPrivate.interceptors.request.use(function (config) {
-        const token = localStorage.getItem('access-token')
+        const token = localStorage.getItem('access_token')
         console.log('request stopped by interceptors', token)
         config.headers.authorization = `Bearer ${token}`;
         return config;

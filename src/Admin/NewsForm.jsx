@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Form, Input, Button, Upload, message, Modal } from 'antd';
-import { UploadOutlined, PlusOutlined } from '@ant-design/icons';
+import {  PlusOutlined } from '@ant-design/icons';
+import uploadImage from '../hook/uploadImage';
 
 const { TextArea } = Input;
 
-const NewsForm = ({ onCreate }) => {
+const NewsForm = () => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async(values) => {
     if (fileList.length === 0) {
       message.error('Please upload an image.');
       return;
     }
-
     const newNews = {
-      key: Date.now(), // Unique key for each news item
       title: values.title,
       description: values.description,
-      image: fileList[0].originFileObj,
-      date: new Date().toISOString().split('T')[0], // Current date
+      image:await uploadImage(fileList[0].originFileObj),
+      date: new Date().toISOString().split('T')[0],
     };
-
-    onCreate(newNews);
-    form.resetFields();
+    console.log(newNews)
+    //form.resetFields();
     setFileList([]);
     message.success('News created successfully!');
   };

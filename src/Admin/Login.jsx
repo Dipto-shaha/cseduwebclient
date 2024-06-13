@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContest } from "./Context";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import handleLogin from "../hook/useHandleLongin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,29 +20,16 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    //onLogin(formData);
-    axios
-      .post("http://localhost:8000/auth/login", formData, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        console.log("User Logged in Successfully");
-        if (res.data.role == "Unassigned") {
-          console.log("Yes");
-          toast.info("Unassigned Role Can't Login");
-          return;
-        }
-        setUser(res.data);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        toast.error("Wrong Credentials");
-        console.log(err);
-        return;
-      });
+    const result = await handleLogin(formData);
+    if (result.success) {
+      toast.success("User Logged in Successfully");
+      navigate('/dashboard')
+    } else {
+      toast.error("Wrong Credentials");
+    }
+   
     setFormData({
       email: "",
       password: "",
