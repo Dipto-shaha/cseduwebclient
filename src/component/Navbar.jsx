@@ -36,7 +36,7 @@ const Navbar = () => {
         {navItems.map((item) => (
           <li
             key={item.id}
-            className="p-4 hover:bg-[#00df9a] rounded-xl cursor-pointer duration-300 hover:text-black"
+            className="p-4 hover:text-[#EDB516] rounded-xl cursor-pointer duration-300"
           >
             <Link to={item.path}>{item.text}</Link>
           </li>
@@ -65,7 +65,7 @@ const Navbar = () => {
         {navItems.map((item) => (
           <li
             key={item.id}
-            className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600"
+            className="font-bold p-4 border-b rounded-xl hover:text-[#EDB516] duration-300 cursor-pointer border-gray-600"
           >
             <Link to={item.path} onClick={handleNav}>
               {item.text}
