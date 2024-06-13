@@ -10,6 +10,7 @@ import NewsForm from "./Admin/NewsForm";
 import CreateEventForm from "./Admin/Create Event";
 import Home from "./Home";
 import About from "./About";
+import Academic from "./Academic";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path:"/about",
         element:<About></About>
+      },{
+        path:"/academic",
+        element:<Academic></Academic>
+      
       }
     ]
   },
