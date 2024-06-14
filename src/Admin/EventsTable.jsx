@@ -1,4 +1,4 @@
-import { Table, Button, Space, Input } from "antd";
+import { Table, Button, Space, Input, Modal, Form, DatePicker, TimePicker } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useGetAllEvents from "../hook/Events/useGetAllEvents";
@@ -6,18 +6,32 @@ import useGetAllEvents from "../hook/Events/useGetAllEvents";
 const { Search } = Input;
 
 const EventsTable = () => {
-  const [data, setEventsList] = useGetAllEvents(); 
+  const [data, setEventsList] = useGetAllEvents();
   const [searchText, setSearchText] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [formData, setFormData] = useState(null);
 
   const handleSearch = (value) => {
     setSearchText(value);
   };
+
   const handleDelete = (id) => {
     setEventsList(data.filter((item) => item.id !== id));
   };
 
-  const handleUpdate = (id) => {
-    console.log("Update item with id:", id);
+  const handleUpdate = (record) => {
+    setFormData(record);
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setVisible(false);
+    // Here you can handle form submission
+    console.log("Form submitted with values: ", formData);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
   };
 
   const columns = [
@@ -46,7 +60,7 @@ const EventsTable = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Button onClick={() => handleUpdate(record?.id)}>Update</Button>
+          <Button onClick={() => handleUpdate(record)}>Update</Button>
           <Button danger onClick={() => handleDelete(record?.id)}>
             Delete
           </Button>
@@ -82,6 +96,37 @@ const EventsTable = () => {
         </Button>
       </div>
       <Table columns={columns} dataSource={filteredData} />
+
+      <Modal
+        title="Update Event"
+        open={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Form
+          layout="vertical"
+          initialValues={formData}
+          onFinish={(values) => {
+            setFormData(values);
+            handleOk();
+          }}
+        >
+          {/* <Form.Item label="Date" name="date">
+            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+          </Form.Item> */}
+          <Form.Item label="Description" name="description">
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item label="Event Title" name="event_title">
+            <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Update
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 };

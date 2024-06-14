@@ -1,4 +1,5 @@
-import  { useState } from "react";
+import { Button } from "antd";
+import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
@@ -42,6 +43,9 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
+      <Link to="/login">
+        <Button>Log In</Button>
+      </Link>
 
       {/* Mobile Navigation Icon */}
       <div onClick={handleNav} className="block md:hidden">

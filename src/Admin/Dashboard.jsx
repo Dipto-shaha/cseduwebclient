@@ -40,9 +40,9 @@ const itemsList = {
     },
     {
       icon: <UserAddOutlined></UserAddOutlined>,
-      label: "Staff Profile",
+      label: "Add User",
       link: "/dashboard/adduser",
-    }
+    },
   ]
 };
 const Dashboard = () => {

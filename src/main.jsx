@@ -13,6 +13,7 @@ import Home from "./Home";
 import About from "./About";
 import Academic from "./Academic";
 import EventsTable from "./Admin/EventsTable";
+import AddUser from "./Admin/AddUser";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/addnews",
         element:<NewsForm></NewsForm>
+      },
+      {
+        path:"/dashboard/adduser",
+        element:<AddUser></AddUser>
       }
     ],
   },
