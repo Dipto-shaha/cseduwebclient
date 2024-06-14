@@ -1,6 +1,19 @@
 import { useState } from "react";
-import { Form, Input, Button, Upload, message, DatePicker, Modal } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Upload,
+  message,
+  DatePicker,
+  TimePicker,
+  Modal,
+} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import uploadImage from "../hook/uploadImage";
+import handleEventsPost from "../hook/Events/handleEventPost";
+import useAxiosPrivate from "../hook/useAxiosPrivate";
+import Spinner from "../component/Spinner";
 
 const { TextArea } = Input;
 
@@ -9,6 +22,8 @@ const CreateEventForm = () => {
   const [fileList, setFileList] = useState([]);
   const [previewImage, setPreviewImage] = useState("");
   const [previewVisible, setPreviewVisible] = useState(false);
+  const [loading,setLoading]= useState(false);
+  const axios =useAxiosPrivate();
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -17,6 +32,7 @@ const CreateEventForm = () => {
     setPreviewImage(file.url || file.preview);
     setPreviewVisible(true);
   };
+
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -26,25 +42,29 @@ const CreateEventForm = () => {
     });
   };
 
-
   const handleCancel = () => setPreviewVisible(false);
-  const handleSubmit = (values) => {
+  const handleSubmit = async(values) => {
     if (fileList.length === 0) {
       message.error("Please upload an image.");
       return;
     }
-
+    setLoading(true);
     const newEvent = {
-      key: Date.now(), // Unique key for each event
-      ...values,
-      image: fileList[0].originFileObj,
+      photo: await uploadImage(fileList[0].originFileObj),
       date: values.date.format("YYYY-MM-DD"),
+      date_and_time: values.time.format("HH:mm"),
+      description:values.description,
+      event_title:values.title,
+      venue:values.venue
     };
-
     console.log(newEvent);
-    form.resetFields();
-    setFileList([]);
-    message.success("Event created successfully!");
+    const res = await handleEventsPost(axios,newEvent);
+    if(res){
+      setFileList([]);
+      form.resetFields();
+      message.success('Events created successfully!');
+    }
+    setLoading(false);
   };
 
   const handleFileChange = ({ fileList }) => {
@@ -56,7 +76,7 @@ const CreateEventForm = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen bg-gray-100">
+    <div className="flex justify-center bg-gray-100">
       <div className="max-w-xl w-full p-6 m-6 bg-white shadow-md rounded-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Create New Event
@@ -70,13 +90,28 @@ const CreateEventForm = () => {
             <Input placeholder="Event Title" />
           </Form.Item>
 
-          <Form.Item
-            name="date"
-            label="Date"
-            rules={[{ required: true, message: "Please select the date!" }]}
-          >
-            <DatePicker className="w-full" placeholder="Select Date" />
-          </Form.Item>
+          <div className="flex justify-between">
+            <Form.Item
+              name="date"
+              label="Date"
+              className="w-1/2 mr-2"
+              rules={[{ required: true, message: "Please select the date!" }]}
+            >
+              <DatePicker className="w-full" placeholder="Select Date" />
+            </Form.Item>
+            <Form.Item
+              name="time"
+              label="Time"
+              className="w-1/2"
+              rules={[{ required: true, message: "Please input the time!" }]}
+            >
+              <TimePicker
+                className="w-full"
+                format="HH:mm"
+                placeholder="Select Time"
+              />
+            </Form.Item>
+          </div>
 
           <Form.Item
             name="description"
@@ -98,46 +133,45 @@ const CreateEventForm = () => {
           >
             <Input placeholder="Choose a Venue for the event" />
           </Form.Item>
-
-          <Form.Item
-            name="dayAndTime"
-            label="Day and Time"
-            rules={[
-              { required: true, message: "Please input the day and time!" },
-            ]}
-          >
-            <Input placeholder="Write Down the Day and the timing of the events to be commenced from" />
-          </Form.Item>
-
-          <Form.Item
-            name="image"
-            label="Photo"
-            rules={[{ required: true, message: "Please upload an image!" }]}
-          >
-            <Upload
-              listType="picture-card"
-              fileList={fileList}
-              beforeUpload={() => false}
-              onChange={handleFileChange}
-              onPreview={handlePreview}
+          <div className="flex justify-between">
+            <Form.Item
+              name="image"
+              label="Photo"
+              rules={[{ required: true, message: "Please upload an image!" }]}
             >
-              {fileList.length >= 1 ? null : (
-                <div>
-                  <PlusOutlined />
-                  <div style={{ marginTop: 8 }}>Upload</div>
-                </div>
-              )}
-            </Upload>
-          </Form.Item>
+              <Upload
+                listType="picture-card"
+                fileList={fileList}
+                beforeUpload={() => false}
+                onChange={handleFileChange}
+                onPreview={handlePreview}
+              >
+                {fileList.length >= 1 ? null : (
+                  <div>
+                    <PlusOutlined />
+                    <div style={{ marginTop: 8 }}>Upload</div>
+                  </div>
+                )}
+              </Upload>
+            </Form.Item>
 
-          <Form.Item className="flex justify-between">
-            <Button type="default" onClick={() => form.resetFields()}>
-              Cancel
-            </Button>
-            <Button type="primary" htmlType="submit">
-              Save
-            </Button>
-          </Form.Item>
+            <div className="flex justify-center min-w-[200px] ">
+            {
+              loading ?<div className="items-center flex flex-col justify-center"><Spinner ></Spinner> <p>Submitted</p> </div>  :<Form.Item className="flex items-end p-4"> 
+              <Button
+                type="default"
+                className="w-32 mx-2"
+                onClick={() => form.resetFields()}
+              >
+                Cancel
+              </Button>
+              <Button type="primary" className="w-32 mx-2" htmlType="submit">
+                Save
+              </Button>
+            </Form.Item>
+            }
+            </div>
+          </div>
           <Modal
             open={previewVisible}
             title="Image Preview"

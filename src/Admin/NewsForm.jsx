@@ -2,6 +2,8 @@ import  { useState } from 'react';
 import { Form, Input, Button, Upload, message, Modal } from 'antd';
 import {  PlusOutlined } from '@ant-design/icons';
 import uploadImage from '../hook/uploadImage';
+import handleNewsPost from '../hook/News/handleNewsPost';
+import useAxiosPrivate from '../hook/useAxiosPrivate';
 
 const { TextArea } = Input;
 
@@ -10,22 +12,27 @@ const NewsForm = () => {
   const [fileList, setFileList] = useState([]);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
-
+  const axios = useAxiosPrivate();
   const handleSubmit = async(values) => {
+    console.log("Hello")
     if (fileList.length === 0) {
       message.error('Please upload an image.');
       return;
     }
     const newNews = {
-      title: values.title,
+      news_title: values.title,
       description: values.description,
-      image:await uploadImage(fileList[0].originFileObj),
+      photo:await uploadImage(fileList[0].originFileObj),
       date: new Date().toISOString().split('T')[0],
     };
     console.log(newNews)
     //form.resetFields();
-    setFileList([]);
-    message.success('News created successfully!');
+    const res =await handleNewsPost(axios,newNews);
+    if(res){
+      setFileList([]);
+      message.success('News created successfully!');
+    }
+    
   };
 
   const handleFileChange = ({ fileList }) => setFileList(fileList);

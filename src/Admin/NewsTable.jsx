@@ -1,7 +1,7 @@
 import { Table, Button, Space, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
-import useGetAllNews from "../hook/useGetAllNews";
+import useGetAllNews from "../hook/News/useGetAllNews";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -140,7 +140,9 @@ const NewsTable = () => {
           style={{ marginBottom: 16 }}
           className="w-1/2"
         />
-        <Button><Link to ="/dashboard/addnews">Add News</Link></Button>
+        <Button>
+          <Link to="/dashboard/addnews">Add News</Link>
+        </Button>
       </div>
       <Table columns={columns} dataSource={filteredData} />
     </div>
