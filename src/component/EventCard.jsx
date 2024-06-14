@@ -1,27 +1,36 @@
+import PropTypes from 'prop-types';
 import { FaLocationDot } from "react-icons/fa6";
 
-const EventCard = () => {
+const EventCard = ({ events }) => {
   return (
-    <div className="px-5 py-2 shadow-lg">
+    <div key={events.id} className="px-5 py-2 shadow-lg">
       <img
-        src="/Img/codesamurai.jpg"
+        src={events.photo}
         className="w-full h-[300px] rounded-lg"
-      ></img>
-      <p>29 Jul 2024</p>
-      <p className="text-2xl font-semibold">
-      Inter-University Hackathon 2024 in DU
-      </p>
-      <p>
-        The body of the late US Rep. John Lewis on Sunday will make the final
-        journey across the famous bridge in Selma, Alabama, where he helped lead
-        a march for voting rights in 1965.
-      </p>
-      <p>Date: 23 Jul 2024</p>
-      <p className="flex items-center space-x-4 "><FaLocationDot /> CSEDU, Auditorium
+        alt="Event Photo"
+      />
+      <p>{events.date}</p>
+      <p className="text-2xl font-semibold">{events.event_title}</p>
+      <p>{events.description}</p>
+      <p>Date: {events.date_and_time}</p>
+      <p className="flex items-center space-x-4 ">
+        <FaLocationDot /> {events.venue}
       </p>
       <button className="text-right">Register</button>
     </div>
   );
+};
+
+EventCard.propTypes = {
+  events: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    event_title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    venue: PropTypes.string.isRequired,
+    date_and_time: PropTypes.string.isRequired,
+    photo: PropTypes.string,
+  }).isRequired,
 };
 
 export default EventCard;
