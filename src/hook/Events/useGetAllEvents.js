@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useAxiosPrivate from './useAxiosPrivate';
+import useAxiosPrivate from '../useAxiosPrivate';
 
 export default function useGetAllEvents() {  
     const [eventsList, setEventsList] = useState([]); 

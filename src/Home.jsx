@@ -1,7 +1,9 @@
 import CarouselHome from "./component/CarouselHome";
 import EventCard from "./component/EventCard";
 import NewsCard from "./component/NewsCard";
+import useGetAllNews from "./hook/News/useGetAllNews";
 const Home = () => {
+  const [news, setNewsList] = useGetAllNews();
   return (
     <div>
       <CarouselHome></CarouselHome>
@@ -36,9 +38,11 @@ const Home = () => {
       <div className="my-10">
         <p className="text-center text-4xl font-bold my-4">Latest News </p>
         <div className="grid grid-cols-3 gap-10">
-            <NewsCard></NewsCard>
-            <NewsCard></NewsCard>
-            <NewsCard></NewsCard>
+            {
+              news.map(item=>{
+                return <NewsCard news={item} key={item.id}></NewsCard>
+              })
+            }
         </div>
       </div>
       <div className="my-10">

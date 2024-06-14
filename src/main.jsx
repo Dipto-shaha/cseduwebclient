@@ -12,6 +12,7 @@ import CreateEventForm from "./Admin/Create Event";
 import Home from "./Home";
 import About from "./About";
 import Academic from "./Academic";
+import EventsTable from "./Admin/EventsTable";
 
 const router = createBrowserRouter([
   {
@@ -47,9 +48,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/news",
         element: <NewsTable></NewsTable>,
+        
       },
       {
         path:"/dashboard/event",
+        element:<EventsTable></EventsTable>
+      },
+      {
+        path:"/dashboard/addevents",
         element:<CreateEventForm></CreateEventForm>
       },
       {
