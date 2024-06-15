@@ -4,6 +4,7 @@ import { AuthContest } from "./Context";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import handleLogin from "../hook/useHandleLongin";
+import { Input } from "antd";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -81,7 +82,10 @@ const LoginPage = () => {
                 htmlFor="password"
                 className="block text-gray-700 mb-3"
               ></label>
-              <input
+              <Input.Password 
+                className="w-full bg-transparent rounded border px-3 py-2 "
+                />
+              {/* <input
                 type="password"
                 id="password"
                 name="password"
@@ -90,7 +94,7 @@ const LoginPage = () => {
                 placeholder="*********"
                 required
                 className="w-full bg-transparent rounded border px-3 py-2 text-white placeholder:text-gray-200"
-              />
+              /> */}
             </div>
             <button
               type="submit"
