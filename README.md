@@ -37,7 +37,7 @@ The intentions behind the CSE Department website are to:
 - **Support Administrative Functions**: Streamline administrative processes such as course registration, fee payment and academic advising.
 
 
-# Project Features
+# Exclusive Features
 
 The website for our Department of Computer Science and Engineering (CSE) in the University of Dhaka (DU) includes the following features:
 
@@ -71,6 +71,42 @@ The website for our Department of Computer Science and Engineering (CSE) in the 
 
 15. **Customization**: This website can further be customized according to need and can be ingrate with other different websites or tools. It will make our website to always adaptable with the future updated tools and technologies.
 
+
+# Team Members Details and Responsibilities
+1. **Abdullah Ibne Hanif Arean (FH-12)**:
+  - Prototype Designing
+  - Making Proper APIs with FastAPI
+  - API Testing and Debugging
+  - Version Controlling
+  - Scalability of the website
+  - Database Designing and Relation Creation 
+
+2. **Atikur Rahman (SH-19)**:
+  - Backend Development FastAPI
+  - Debugging and Bug Fixing of the Backend
+  - Deployment of the website
+  - Version Controlling
+    
+3. **Mahmudul Hasan (AE-20)**:
+  - Integration of MongoDB
+  - Database Design
+  - Version Controlling
+  - Scalability and Deployment
+
+4. **Dipto Shaha (JN-34)**:
+  - Frontend Development
+  - Authentication and Authorization
+  - Ensure Web Security
+  - Integration of APIs with the Frontend
+  - Version Controlling
+
+5. **Mehadi Hasan (SH-60)**:
+  - Frontend Development 
+  - Debugging and Testing Authenications Properly
+  - Ensuring Web Security
+  - Proper Documentation of Task flow
+  - Version Controlling
+  
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
