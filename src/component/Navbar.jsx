@@ -2,6 +2,7 @@ import { Button } from "antd";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import NavberProfile from "./NavberProfile";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -77,6 +78,7 @@ const Navbar = () => {
         <Link to="/login">
           <Button className="ml-4">Log In</Button>
         </Link>
+        <NavberProfile name="John Doe"  />
       </div>
 
       {/* Mobile Navigation Icon */}
@@ -128,7 +130,10 @@ const Navbar = () => {
             <Link to="/login" onClick={handleNav}>
               <Button>Log In</Button>
             </Link>
+            <NavberProfile name="John Doe"  />
+
           </li>
+
         </ul>
       </div>
     </div>
