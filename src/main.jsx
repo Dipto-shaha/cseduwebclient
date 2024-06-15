@@ -18,6 +18,7 @@ import ForgetPassword from "./ForgetPassword";
 import News from "./News";
 import Events from "./Events";
 import Club from "./Club";
+import Contact from "./Contact";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path:"/club",
         element:<Club></Club>
+      },
+      {
+        path:'/contact',
+        element:<Contact></Contact>
       }
     ],
   },
