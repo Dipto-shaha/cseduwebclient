@@ -141,7 +141,7 @@ const ForgetPassword = () => {
           )}
           <button
             type="submit"
-            className="px-5 bg-transparent border  text-white py-2 rounded hover:bg-green-500"
+            className="px-5 bg-transparent border  text-white py-2 rounded hover:bg-[#14264c]"
           >
             {showOTPBox ? "Submit OTP" : "Send OTP"}
           </button>

@@ -26,7 +26,7 @@ const LoginPage = () => {
     const result = await handleLogin(formData);
     if (result.success) {
       toast.success("User Logged in Successfully");
-      navigate("/dashboard");
+      navigate("/");
     } else {
       toast.error("Wrong Credentials");
     }

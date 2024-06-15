@@ -46,7 +46,7 @@ const Context = ({ children }) => {
     }
     setLoading(false);
   }, [user, setUser]);
-  if (loading) return <p>sdkfbak</p>;
+  if (loading) return <p></p>;
   return (
     <AuthContest.Provider value={authInfo}>{children}</AuthContest.Provider>
   );
