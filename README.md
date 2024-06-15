@@ -106,6 +106,17 @@ The website for our Department of Computer Science and Engineering (CSE) in the 
   - Ensuring Web Security
   - Proper Documentation of Task flow
   - Version Controlling
+
+
+# Platform, Library & Tools
+  - [HTML](https://web.dev/learn/html) : Markup language for creating the structure of web pages.
+  - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) : Style sheet language for designing the appearance of web pages.
+  - [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html) : Syntax extension for JavaScript used with React for building user interfaces.
+  - [React JS](https://legacy.reactjs.org/docs/introducing-jsx.html) : JavaScript library for building interactive and reusable user interfaces.
+  - [FastAPI](https://fastapi.tiangolo.com/) : Fast web framework for building APIs with Python.
+  - [MongoDB](https://www.mongodb.com/) : NoSQL database for storing and retrieving data in a flexible, JSON-like format.
+  - [Git/Github](https://github.com/) : Version control platform for collaborative software development.
+
   
 # React + Vite
 
