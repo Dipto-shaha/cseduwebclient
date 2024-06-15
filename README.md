@@ -69,7 +69,7 @@ The website for our Department of Computer Science and Engineering (CSE) in the 
 
 14. **Accessibility & Compatibility**: Design elements to ensure the website is accessible to users with disabilities, including screen reader compatibility and adjustable text sizes.
 
-15. **Customization**: This website can further be customized according to need and can be ingrate with other different websites or tools.
+15. **Customization**: This website can further be customized according to need and can be ingrate with other different websites or tools. It will make our website to always adaptable with the future updated tools and technologies.
 
 # React + Vite
 
