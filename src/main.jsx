@@ -17,6 +17,7 @@ import AddUser from "./Admin/AddUser";
 import ForgetPassword from "./ForgetPassword";
 import News from "./News";
 import Events from "./Events";
+import Club from "./Club";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path:"/events",
         element:<Events></Events>
+      },
+      {
+        path:"/club",
+        element:<Club></Club>
       }
     ],
   },
