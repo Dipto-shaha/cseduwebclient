@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import axios from "axios";
-import { AuthContest } from "./Context";
+import { AuthContest } from "./Admin/Context";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import handleLogin from "../hook/useHandleLongin";
+import handleLogin from "./hook/useHandleLongin";
 import { Input } from "antd";
 
 const LoginPage = () => {
@@ -21,16 +21,16 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await handleLogin(formData);
     if (result.success) {
       toast.success("User Logged in Successfully");
-      navigate('/dashboard')
+      navigate("/dashboard");
     } else {
       toast.error("Wrong Credentials");
     }
-   
+
     setFormData({
       email: "",
       password: "",
@@ -41,21 +41,23 @@ const LoginPage = () => {
     <div
       className=" h-screen flex items-center jsutify-center"
       style={{
-        backgroundImage:
-          "url('/Img/buidings.jpg')",
+        backgroundImage: "url('/Img/buidings.jpg')",
         //backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
       <div className="wrapper flex backdrop-blur-lg border items-center justify-center w-full px-12 py-16 rounded-xl shadow-xl max-w-screen-md mx-auto">
-        <div className="">
+      <div className=" w-1/2 flex items-center flex-col">
           <img
             src="https://i.ibb.co/VwJ6FWY/CSEDULogo-removebg-preview.png"
             alt=""
-            className="h-40 w-40 rounded-2xl"
+            className="h-60 w-52"
           />
-          <p className="text-white w-3/4">
-            Revolutionizing Waste Management in Dhaka North City Corporation
+          <p className="text-center text-white -mt-2">
+            Department of <br></br>
+            Computer Science & Engineering
+            <br></br>
+            <span className="text-[#14264c] text-xl font-bold">Univeristy of Dhaka</span>
           </p>
         </div>
 
@@ -66,7 +68,7 @@ const LoginPage = () => {
             </h3>
             <div className="mb-4">
               <label htmlFor="username" className="block text-gray-700"></label>
-              <input
+              <Input
                 type="email"
                 id="email"
                 name="email"
@@ -74,7 +76,7 @@ const LoginPage = () => {
                 onChange={handleChange}
                 required
                 placeholder="example@gmail.com"
-                className="w-full bg-transparent rounded border px-3 py-2 text-white placeholder:text-gray-200"
+                className="w-full bg-transparent rounded border px-3 py-2 placeholder:text-white"
               />
             </div>
             <div className="mb-4">
@@ -82,9 +84,10 @@ const LoginPage = () => {
                 htmlFor="password"
                 className="block text-gray-700 mb-3"
               ></label>
-              <Input.Password 
-                className="w-full bg-transparent rounded border px-3 py-2 "
-                />
+              <Input.Password
+                placeholder="********"
+                className="w-full bg-transparent rounded border px-3 py-2 placeholder:text-white "
+              />
               {/* <input
                 type="password"
                 id="password"
@@ -109,7 +112,7 @@ const LoginPage = () => {
               to="/forget-password"
               className="hover:text-blue-700 focus:outline-none"
             >
-              <span className="underline text-blue-500">Reset it here.</span>
+              <span className="underline text-[#14264c]">Reset it here.</span>
             </Link>
           </div>
         </div>
