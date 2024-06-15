@@ -15,6 +15,7 @@ import Academic from "./Academic";
 import EventsTable from "./Admin/EventsTable";
 import AddUser from "./Admin/AddUser";
 import ForgetPassword from "./ForgetPassword";
+import News from "./News";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
         path: "/academic",
         element: <Academic></Academic>,
       },
+      {
+        path:"/news",
+        element:<News></News>
+      }
     ],
   },
   {
