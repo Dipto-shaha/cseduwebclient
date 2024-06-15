@@ -16,6 +16,7 @@ import EventsTable from "./Admin/EventsTable";
 import AddUser from "./Admin/AddUser";
 import ForgetPassword from "./ForgetPassword";
 import News from "./News";
+import Events from "./Events";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path:"/news",
         element:<News></News>
+      },
+      {
+        path:"/events",
+        element:<Events></Events>
       }
     ],
   },
