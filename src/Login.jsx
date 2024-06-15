@@ -86,6 +86,10 @@ const LoginPage = () => {
               ></label>
               <Input.Password
                 placeholder="********"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
                 className="w-full bg-transparent rounded border px-3 py-2 placeholder:text-white "
               />
               {/* <input
@@ -101,7 +105,7 @@ const LoginPage = () => {
             </div>
             <button
               type="submit"
-              className="w-full border border-white  py-1 text-white uppercase hover:bg-green-500 hover:text-white duration-600 transition rounded font-bold"
+              className="w-full border border-white  py-1 text-white uppercase hover:bg-[#14264c] hover:text-white duration-600 transition rounded font-bold"
             >
               Login
             </button>
