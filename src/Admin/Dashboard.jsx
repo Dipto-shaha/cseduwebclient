@@ -5,17 +5,18 @@ import {
   UserAddOutlined,
   TruckOutlined,
 } from "@ant-design/icons";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CiLogout } from "react-icons/ci";
 import { Layout, Menu, theme } from "antd";
 // import { useContext } from "react";
 // import { AuthContest } from "./Context";
-import axios from "axios";
 const { Header, Content, Footer, Sider } = Layout;
 import { useNavigate } from "react-router-dom";
+import handleLogout from "../hook/handleLogout";
+import useGetUserInfo from "../hook/useGetUserInfo";
 
-const user ={ name:"Dipto", role:"Admin",email:"dip@gmail.com", image:"adfa"}
+// const user ={ name:"Dipto", role:"Admin",email:"dip@gmail.com", image:"adfa"}
 const itemsList = {
   "Admin": [
     {
@@ -46,28 +47,32 @@ const itemsList = {
   ]
 };
 const Dashboard = () => {
-  //const { user, setUser } = useContext(AuthContest);
+  const [ user,,loading ] = useGetUserInfo();
   const navigate = useNavigate();
   const location = useLocation();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const handleLogout = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/auth/logout",
-        null,
-        {
-          withCredentials: true,
-        }
+  function renderAvatar() {
+    if (user.photo) {
+      return <div> <img src={user.photo} width={42} height={42} alt="avatar" className="rounded-full" /></div>;
+    } else {
+      const initial = user.first_name?.charAt(0)?.toUpperCase();
+      return (
+        <div className={`w-10 h-10 rounded-full bg-[#216a70] flex items-center justify-center text-2xl text-white`}>
+          {initial}
+        </div>
       );
-      localStorage.removeItem("user");
-      console.log(response.data);
-    //   setUser(null); // Assuming the server responds with some data
-      navigate("/");
-    } catch (error) {
-      console.error("Error logging out:", error);
     }
+  }
+  const handleLogoutInCode = async () => {
+     // console.log("fuck")
+      const res = await handleLogout();
+      if(res.success){
+        navigate("/");
+        toast.success("LogOut Successfully")
+      }
+      else toast.error("Something went wrong!.Try again");
   };
   return (
     <div>
@@ -98,14 +103,10 @@ const Dashboard = () => {
           <div className="flex flex-col justify-between h-full">
             <div className="p-4">
               <div className="flex items-center mb-5">
-                <img
-                  src={user?.image}
-                  alt="User"
-                  className="w-10 h-10 rounded-full mr-2"
-                />
-                <div>
-                  <p className="font-bold">{user?.name}</p>
-                  <p>{user?.role}</p>
+                {renderAvatar()}
+                <div className="ml-2">
+                  <p className="font-bold">{ !loading ? (user?.first_name +" "+ user?.last_name): ""} </p>
+                  <p className=" capitalize ">{user?.role}</p>
                   {/* <p className="text-gray-600">{user.email}</p> */}
                 </div>
               </div>
@@ -115,7 +116,7 @@ const Dashboard = () => {
                 mode="inline"
                 defaultSelectedKeys={[location.pathname]}
               >
-                {itemsList[user?.role].map((item, index) => (
+                {itemsList['Admin'].map((item, index) => (
                   <Menu.Item key={index + 1} icon={item.icon}>
                     <Link to={item.link}>{item.label}</Link>
                   </Menu.Item>
@@ -125,7 +126,7 @@ const Dashboard = () => {
             <div className="p-4">
               <div className="flex justify-center  font-medium items-center">
                 <CiLogout></CiLogout>
-                <button className=" ml-2 btn" onClick={handleLogout}>
+                <button className=" ml-2 btn" onClick={handleLogoutInCode}>
                   Logout
                 </button>
               </div>

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const { Item, Divider } = Menu;
 
-const NavberProfile = ({ user }) => {
+const NavberProfile = ({ user,loading }) => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
   
@@ -17,6 +17,9 @@ const NavberProfile = ({ user }) => {
       await handleLogout();
       navigate('/');
     }
+    else if(e.key==='dashboard'){
+      navigate('/dashboard');
+    }
     setVisible(false);
   };
 
@@ -24,8 +27,12 @@ const NavberProfile = ({ user }) => {
     <Menu onClick={handleMenuClick}>
       <Item key="profile">Profile</Item>
       <Divider />
-      <Item key="updateProfile" icon={<GrUpdate />}>
+      {user.role=="admin" && <><Item key="updateProfile" icon={<GrUpdate />}>
         Update Profile
+      </Item>
+      <Divider /></>}
+      <Item key="dashboard" icon={<LogoutOutlined />}>
+        Dashboard
       </Item>
       <Divider />
       <Item key="logout" icon={<LogoutOutlined />}>
@@ -57,7 +64,7 @@ const NavberProfile = ({ user }) => {
       <Button className="flex items-center border-[1px] border-[#14264c] py-6" type="text">
         {renderAvatar()}
         <div className="ml-2">
-          <p className="text-sm font-semibold capitalize">{(user.first_name + " " + user.last_name) || ""} </p>
+          <p className="text-sm font-semibold capitalize">{!loading ? (user.first_name + " " + user.last_name) : "        "} </p>
           <p className="text-xs text-gray-500 capitalize">{user.role}</p>
         </div>
       </Button>

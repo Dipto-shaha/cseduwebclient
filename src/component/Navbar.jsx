@@ -8,7 +8,7 @@ import useGetUserInfo from "../hook/useGetUserInfo";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [openSubNav, setOpenSubNav] = useState(null);
-  const [user,]= useGetUserInfo();
+  const [user,,loading]= useGetUserInfo();
   const handleNav = () => {
     setNav(!nav);
   };
@@ -80,7 +80,7 @@ const Navbar = () => {
                       <Button>Log In</Button>
                     </Link>
                     :
-                    <NavberProfile user={user}  />
+                    <NavberProfile user={user}  loading={loading} />
         }
       </div>
 
@@ -134,7 +134,7 @@ const Navbar = () => {
                       <Button>Log In</Button>
                     </Link>
                     :
-                    <NavberProfile user={user}  />
+                    <NavberProfile user={user} loading={loading} />
             }
           </li>
 
