@@ -36,8 +36,8 @@ const itemsList = {
     },
     {
       icon: <UserDeleteOutlined></UserDeleteOutlined>,
-      label: "Teacher Profile",
-      link: "/dashboard/user",
+      label: "Users",
+      link: "/dashboard/users",
     },
     {
       icon: <UserAddOutlined></UserAddOutlined>,

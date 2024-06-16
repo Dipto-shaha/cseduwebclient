@@ -19,6 +19,7 @@ import News from "./News";
 import Events from "./Events";
 import Club from "./Club";
 import Contact from "./Contact";
+import UsersTable from "./Admin/UsersTable";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
         path: "/dashboard/adduser",
         element: <AddUser></AddUser>,
       },
+      {
+        path:"/dashboard/users",
+        element:<UsersTable></UsersTable>
+      }
     ],
   },
 ]);
