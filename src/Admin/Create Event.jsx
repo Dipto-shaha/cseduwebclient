@@ -8,6 +8,8 @@ import {
   DatePicker,
   TimePicker,
   Modal,
+  Radio,
+  Checkbox,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import uploadImage from "../hook/uploadImage";
@@ -22,8 +24,9 @@ const CreateEventForm = () => {
   const [fileList, setFileList] = useState([]);
   const [previewImage, setPreviewImage] = useState("");
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [loading,setLoading]= useState(false);
-  const axios =useAxiosPrivate();
+  const [loading, setLoading] = useState(false);
+  const [audienceType, setAudienceType] = useState("public");
+  const axios = useAxiosPrivate();
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -41,9 +44,18 @@ const CreateEventForm = () => {
       reader.onerror = (error) => reject(error);
     });
   };
+  const createAudienceValue = (audience_roles) => {
+    let val = 0;
+    if (audience_roles.includes("admin")) val |= 1;    // 0001
+    if (audience_roles.includes("student")) val |= 2;  // 0010
+    if (audience_roles.includes("alumni")) val |= 4;   // 0100
+    if (audience_roles.includes("teacher")) val |= 8;  // 1000
+    return val;
+  };
+  
 
   const handleCancel = () => setPreviewVisible(false);
-  const handleSubmit = async(values) => {
+  const handleSubmit = async (values) => {
     if (fileList.length === 0) {
       message.error("Please upload an image.");
       return;
@@ -53,19 +65,21 @@ const CreateEventForm = () => {
       photo: await uploadImage(fileList[0].originFileObj),
       date: values.date.format("YYYY-MM-DD"),
       date_and_time: values.time.format("HH:mm"),
-      description:values.description,
-      event_title:values.title,
-      venue:values.venue
+      description: values.description,
+      event_title: values.title,
+      venue: values.venue,
+      allowed_roles: audienceType === "private" ? createAudienceValue(values.audience_roles) : 0,
     };
     console.log(newEvent);
-    const res = await handleEventsPost(axios,newEvent);
-    if(res){
+    const res = await handleEventsPost(axios, newEvent);
+    if (res) {
       setFileList([]);
       form.resetFields();
-      message.success('Events created successfully!');
+      message.success("Events created successfully!");
     }
     setLoading(false);
   };
+  
 
   const handleFileChange = ({ fileList }) => {
     setFileList(fileList);
@@ -78,9 +92,7 @@ const CreateEventForm = () => {
   return (
     <div className="flex justify-center bg-gray-100">
       <div className="max-w-xl w-full p-6 m-6 bg-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Create New Event
-        </h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Create New Event</h2>
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             name="title"
@@ -105,25 +117,16 @@ const CreateEventForm = () => {
               className="w-1/2"
               rules={[{ required: true, message: "Please input the time!" }]}
             >
-              <TimePicker
-                className="w-full"
-                format="HH:mm"
-                placeholder="Select Time"
-              />
+              <TimePicker className="w-full" format="HH:mm" placeholder="Select Time" />
             </Form.Item>
           </div>
 
           <Form.Item
             name="description"
             label="Description"
-            rules={[
-              { required: true, message: "Please input the description!" },
-            ]}
+            rules={[{ required: true, message: "Please input the description!" }]}
           >
-            <TextArea
-              rows={4}
-              placeholder="Write down the Event Description Here"
-            />
+            <TextArea rows={4} placeholder="Write down the Event Description Here" />
           </Form.Item>
 
           <Form.Item
@@ -134,6 +137,34 @@ const CreateEventForm = () => {
             <Input placeholder="Choose a Venue for the event" />
           </Form.Item>
           <div className="flex justify-between">
+          <Form.Item
+            name="audience_type"
+            label="Audience Type"
+            rules={[{ required: true, message: "Please select audience type!" }]}
+          >
+            <Radio.Group
+              onChange={(e) => setAudienceType(e.target.value)}
+              value={audienceType}
+            >
+              <Radio value="public">Public</Radio>
+              <Radio value="private">Private</Radio>
+            </Radio.Group>
+          </Form.Item>
+
+          {audienceType === "private" && (
+            <Form.Item
+              name="audience_roles"
+              label="Audience Roles"
+              rules={[{ required: true, message: "Please select at least one role!" }]}
+            >
+              <Checkbox.Group>
+                <Checkbox value="admin">Admin</Checkbox>
+                <Checkbox value="student">Student</Checkbox>
+                <Checkbox value="alumni">Alumni</Checkbox>
+                <Checkbox value="teacher">Teacher</Checkbox>
+              </Checkbox.Group>
+            </Form.Item>
+          )}
             <Form.Item
               name="image"
               label="Photo"
@@ -155,23 +186,28 @@ const CreateEventForm = () => {
               </Upload>
             </Form.Item>
 
-            <div className="flex justify-center min-w-[200px] ">
-            {
-              loading ?<div className="items-center flex flex-col justify-center"><Spinner ></Spinner> <p>Submitted</p> </div>  :<Form.Item className="flex items-end p-4"> 
-              <Button
-                type="default"
-                className="w-32 mx-2"
-                onClick={() => form.resetFields()}
-              >
-                Cancel
-              </Button>
-              <Button type="primary" className="w-32 mx-2" htmlType="submit">
-                Save
-              </Button>
-            </Form.Item>
-            }
-            </div>
+            
           </div>
+          <div className="flex justify-center min-w-[200px] ">
+              {loading ? (
+                <div className="items-center flex flex-col justify-center">
+                  <Spinner></Spinner> <p>Submitted</p>{" "}
+                </div>
+              ) : (
+                <Form.Item className="flex items-end p-4">
+                  <Button
+                    type="default"
+                    className="w-32 mx-2"
+                    onClick={() => form.resetFields()}
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="primary" className="w-32 mx-2" htmlType="submit">
+                    Save
+                  </Button>
+                </Form.Item>
+              )}
+            </div>
           <Modal
             open={previewVisible}
             title="Image Preview"
