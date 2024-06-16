@@ -3,11 +3,12 @@ import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import NavberProfile from "./NavberProfile";
+import useGetUserInfo from "../hook/useGetUserInfo";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [openSubNav, setOpenSubNav] = useState(null);
-
+  const [user,]= useGetUserInfo();
   const handleNav = () => {
     setNav(!nav);
   };
@@ -75,10 +76,12 @@ const Navbar = () => {
             )
           )}
         </ul>
-        <Link to="/login">
-          <Button className="ml-4">Log In</Button>
-        </Link>
-        <NavberProfile name="John Doe"  />
+        { !user ? <Link to="/login" onClick={handleNav}>
+                      <Button>Log In</Button>
+                    </Link>
+                    :
+                    <NavberProfile user={user}  />
+        }
       </div>
 
       {/* Mobile Navigation Icon */}
@@ -127,11 +130,12 @@ const Navbar = () => {
             )
           )}
           <li className="p-4 w-full text-center">
-            <Link to="/login" onClick={handleNav}>
-              <Button>Log In</Button>
-            </Link>
-            <NavberProfile name="John Doe"  />
-
+            { !user ? <Link to="/login" onClick={handleNav}>
+                      <Button>Log In</Button>
+                    </Link>
+                    :
+                    <NavberProfile user={user}  />
+            }
           </li>
 
         </ul>

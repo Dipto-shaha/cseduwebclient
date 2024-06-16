@@ -7,7 +7,7 @@ const News = () => {
   const [news,] = useGetAllNews();
   const [currentPage, setCurrentPage] = useState(0);
 
-  const newsPerPage = 2; // Number of news items per page
+  const newsPerPage = 3; // Number of news items per page
   const offset = currentPage * newsPerPage;
   const currentNews = news.slice(offset, offset + newsPerPage);
   const pageCount = Math.ceil(news.length / newsPerPage);

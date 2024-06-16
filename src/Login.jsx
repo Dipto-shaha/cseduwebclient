@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
-import axios from "axios";
-import { AuthContest } from "./Admin/Context";
+
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import handleLogin from "./hook/useHandleLongin";
 import { Input } from "antd";
+import { useState } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,7 +11,6 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const { setUser } = useContext(AuthContest);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
