@@ -1,17 +1,20 @@
 import { Form, Input, Button, Select } from "antd";
 import { useState } from "react";
+import handleAddUser from "../hook/user/handleAddUser";
+import useAxiosPrivate from '../hook/useAxiosPrivate';
+import { toast } from "react-toastify";
 
 const { Option } = Select;
 
 const AddUser = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-
-  const onFinish = (values) => {
+  const axios = useAxiosPrivate();
+    const onFinish = async(values) => {
     setLoading(true);
-    // setLoading(false);
-    //   form.resetFields();
-    console.log(values);
+    const res = await handleAddUser(axios,values);
+    if(res) toast.success("User Added Successfully");
+    setLoading(false);
   };
 
   // Custom validator function to check if confirm password matches password
