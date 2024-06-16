@@ -15,7 +15,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import uploadImage from "../hook/uploadImage";
 import handleEventsPost from "../hook/Events/handleEventPost";
 import useAxiosPrivate from "../hook/useAxiosPrivate";
-import Spinner from "../component/Spinner";
 
 const { TextArea } = Input;
 
@@ -46,13 +45,12 @@ const CreateEventForm = () => {
   };
   const createAudienceValue = (audience_roles) => {
     let val = 0;
-    if (audience_roles.includes("admin")) val |= 1;    // 0001
-    if (audience_roles.includes("student")) val |= 2;  // 0010
-    if (audience_roles.includes("alumni")) val |= 4;   // 0100
-    if (audience_roles.includes("teacher")) val |= 8;  // 1000
+    if (audience_roles.includes("admin")) val |= 1; // 0001
+    if (audience_roles.includes("student")) val |= 2; // 0010
+    if (audience_roles.includes("alumni")) val |= 4; // 0100
+    if (audience_roles.includes("teacher")) val |= 8; // 1000
     return val;
   };
-  
 
   const handleCancel = () => setPreviewVisible(false);
   const handleSubmit = async (values) => {
@@ -68,7 +66,10 @@ const CreateEventForm = () => {
       description: values.description,
       event_title: values.title,
       venue: values.venue,
-      allowed_roles: audienceType === "private" ? createAudienceValue(values.audience_roles) : 0,
+      allowed_roles:
+        audienceType === "private"
+          ? createAudienceValue(values.audience_roles)
+          : 0,
     };
     console.log(newEvent);
     const res = await handleEventsPost(axios, newEvent);
@@ -79,7 +80,6 @@ const CreateEventForm = () => {
     }
     setLoading(false);
   };
-  
 
   const handleFileChange = ({ fileList }) => {
     setFileList(fileList);
@@ -92,7 +92,9 @@ const CreateEventForm = () => {
   return (
     <div className="flex justify-center bg-gray-100">
       <div className="max-w-xl w-full p-6 m-6 bg-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-4 text-center">Create New Event</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Create New Event
+        </h2>
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             name="title"
@@ -117,16 +119,25 @@ const CreateEventForm = () => {
               className="w-1/2"
               rules={[{ required: true, message: "Please input the time!" }]}
             >
-              <TimePicker className="w-full" format="HH:mm" placeholder="Select Time" />
+              <TimePicker
+                className="w-full"
+                format="HH:mm"
+                placeholder="Select Time"
+              />
             </Form.Item>
           </div>
 
           <Form.Item
             name="description"
             label="Description"
-            rules={[{ required: true, message: "Please input the description!" }]}
+            rules={[
+              { required: true, message: "Please input the description!" },
+            ]}
           >
-            <TextArea rows={4} placeholder="Write down the Event Description Here" />
+            <TextArea
+              rows={4}
+              placeholder="Write down the Event Description Here"
+            />
           </Form.Item>
 
           <Form.Item
@@ -137,34 +148,41 @@ const CreateEventForm = () => {
             <Input placeholder="Choose a Venue for the event" />
           </Form.Item>
           <div className="flex justify-between">
-          <Form.Item
-            name="audience_type"
-            label="Audience Type"
-            rules={[{ required: true, message: "Please select audience type!" }]}
-          >
-            <Radio.Group
-              onChange={(e) => setAudienceType(e.target.value)}
-              value={audienceType}
-            >
-              <Radio value="public">Public</Radio>
-              <Radio value="private">Private</Radio>
-            </Radio.Group>
-          </Form.Item>
-
-          {audienceType === "private" && (
             <Form.Item
-              name="audience_roles"
-              label="Audience Roles"
-              rules={[{ required: true, message: "Please select at least one role!" }]}
+              name="audience_type"
+              label="Audience Type"
+              rules={[
+                { required: true, message: "Please select audience type!" },
+              ]}
             >
-              <Checkbox.Group>
-                <Checkbox value="admin">Admin</Checkbox>
-                <Checkbox value="student">Student</Checkbox>
-                <Checkbox value="alumni">Alumni</Checkbox>
-                <Checkbox value="teacher">Teacher</Checkbox>
-              </Checkbox.Group>
+              <Radio.Group
+                onChange={(e) => setAudienceType(e.target.value)}
+                value={audienceType}
+              >
+                <Radio value="public">Public</Radio>
+                <Radio value="private">Private</Radio>
+              </Radio.Group>
             </Form.Item>
-          )}
+
+            {audienceType === "private" && (
+              <Form.Item
+                name="audience_roles"
+                label="Audience Roles"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please select at least one role!",
+                  },
+                ]}
+              >
+                <Checkbox.Group>
+                  <Checkbox value="admin">Admin</Checkbox>
+                  <Checkbox value="student">Student</Checkbox>
+                  <Checkbox value="alumni">Alumni</Checkbox>
+                  <Checkbox value="teacher">Teacher</Checkbox>
+                </Checkbox.Group>
+              </Form.Item>
+            )}
             <Form.Item
               name="image"
               label="Photo"
@@ -185,29 +203,19 @@ const CreateEventForm = () => {
                 )}
               </Upload>
             </Form.Item>
-
-            
           </div>
           <div className="flex justify-center min-w-[200px] ">
-              {loading ? (
-                <div className="items-center flex flex-col justify-center">
-                  <Spinner></Spinner> <p>Submitted</p>{" "}
-                </div>
-              ) : (
-                <Form.Item className="flex items-end p-4">
-                  <Button
-                    type="default"
-                    className="w-32 mx-2"
-                    onClick={() => form.resetFields()}
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="primary" className="w-32 mx-2" htmlType="submit">
-                    Save
-                  </Button>
-                </Form.Item>
-              )}
-            </div>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+                className="w-80 py-5 rounded-2xl"
+              >
+                Create Event
+              </Button>
+            </Form.Item>
+          </div>
           <Modal
             open={previewVisible}
             title="Image Preview"
