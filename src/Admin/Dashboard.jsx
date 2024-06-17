@@ -49,6 +49,11 @@ const itemsList = {
       label: "Add User",
       link: "/dashboard/adduser",
     },
+    {
+      icon: <UserAddOutlined></UserAddOutlined>,
+      label: "Publications",
+      link: "/dashboard/publications",
+    },
   ]
 };
 const Dashboard = () => {
