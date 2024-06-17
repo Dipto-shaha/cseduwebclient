@@ -45,11 +45,11 @@ const EventsTable = () => {
       dataIndex: "date_and_time",
       key: "date_and_time",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    //   key: "description",
+    // },
     {
       title: "Event Title",
       dataIndex: "event_title",

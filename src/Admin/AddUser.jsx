@@ -3,6 +3,7 @@ import { useState } from "react";
 import handleAddUser from "../hook/user/handleAddUser";
 import useAxiosPrivate from '../hook/useAxiosPrivate';
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -10,11 +11,17 @@ const AddUser = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const axios = useAxiosPrivate();
-    const onFinish = async(values) => {
+  const navigate = useNavigate();
+  const onFinish = async(values) => {
     setLoading(true);
     const res = await handleAddUser(axios,values);
-    if(res) toast.success("User Added Successfully");
+    if(res.success) {
+       toast.success("User Added Successfully");
+       if(values.role=="teacher")
+          navigate(`/dashboard/add-teacher/${res.data.id}`);
+    }
     setLoading(false);
+
   };
 
   // Custom validator function to check if confirm password matches password
@@ -28,7 +35,7 @@ const AddUser = () => {
   });
 
   return (
-    <Form
+    <><Form
       form={form}
       layout="vertical"
       onFinish={onFinish}
@@ -132,6 +139,9 @@ const AddUser = () => {
         </Form.Item>
       </div>
     </Form>
+     
+    </>
+
   );
 };
 

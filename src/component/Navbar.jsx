@@ -37,7 +37,6 @@ const Navbar = () => {
     { id: 7, text: "News", path: "/news" },
     { id: 8, text: "Events", path: "/events" },
     { id: 9, text: "Research", path: "/research" },
-    { id: 10, text: "Alumni", path: "/alumni" },
     { id: 11, text: "Club", path: "/club" },
     { id: 12, text: "Contact", path: "/contact" },
   ];

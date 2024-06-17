@@ -26,6 +26,11 @@ const itemsList = {
     },
     {
       icon: <UserOutlined></UserOutlined>,
+      label: "Home",
+      link: "/",
+    },
+    {
+      icon: <UserOutlined></UserOutlined>,
       label: "Event",
       link: "/dashboard/event",
     },
