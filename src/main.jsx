@@ -25,6 +25,7 @@ import EventsDetails from "./EventsDetails";
 import AddTeacher from "./Admin/AddTeacher";
 import Profile from "./Profile";
 import UpdateProfile from "./UpdateProfile";
+import PublicationForm from "./Admin/PublicationForm";
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/add-teacher/:id",
         element:<AddTeacher></AddTeacher>
+      },
+      {
+        path:"/dashboard/add-publication",
+        element:<PublicationForm></PublicationForm>
       }
     ],
   },
