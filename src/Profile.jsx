@@ -1,5 +1,5 @@
 import { Card, Avatar } from 'antd';
-import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md'; // Importing Material Design Icons
+import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md'; 
 import useGetUserInfo from './hook/useGetUserInfo';
 import { UserOutlined } from '@ant-design/icons';
 
