@@ -22,6 +22,7 @@ const NavberProfile = ({ user,loading }) => {
     }
     else if(e.key==='profile')
       navigate('/profile')
+    else navigate('/update')
     setVisible(false);
   };
 

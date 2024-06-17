@@ -24,6 +24,7 @@ import NewsDetails from "./NewsDetails";
 import EventsDetails from "./EventsDetails";
 import AddTeacher from "./Admin/AddTeacher";
 import Profile from "./Profile";
+import UpdateProfile from "./UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path:'/profile',
         element:<Profile></Profile>
+      },
+      {
+        path:"/update",
+        element:<UpdateProfile></UpdateProfile>
       }
     ],
   },
