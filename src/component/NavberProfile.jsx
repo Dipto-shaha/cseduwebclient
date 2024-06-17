@@ -20,6 +20,8 @@ const NavberProfile = ({ user,loading }) => {
     else if(e.key==='dashboard'){
       navigate('/dashboard');
     }
+    else if(e.key==='profile')
+      navigate('/profile')
     setVisible(false);
   };
 

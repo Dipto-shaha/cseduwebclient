@@ -23,6 +23,7 @@ import UsersTable from "./Admin/UsersTable";
 import NewsDetails from "./NewsDetails";
 import EventsDetails from "./EventsDetails";
 import AddTeacher from "./Admin/AddTeacher";
+import Profile from "./Profile";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path:'/events/:id',
         element:<EventsDetails></EventsDetails>
+      },
+      {
+        path:'/profile',
+        element:<Profile></Profile>
       }
     ],
   },
