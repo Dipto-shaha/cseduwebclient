@@ -4,10 +4,8 @@ import useAxiosPrivate from '../useAxiosPrivate';
 export default function useGetSingleNews(id) {  
     const [news, setNewsList] = useState({}); 
     const axios = useAxiosPrivate();
-    console.log("Whats wrong")
     async function getSingleNews(id) {
         try {
-            console.log("whats wrong")
             const res = await axios.get(`/news/${id}`);
             setNewsList(res?.data?.data);
             console.log(res)

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { FaLocationDot } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const EventsLong = ({ events }) => {
   return (
@@ -19,7 +20,7 @@ const EventsLong = ({ events }) => {
         <p className="flex items-center space-x-4 ">
           <FaLocationDot /> {events.venue}
         </p>
-        <button className="text-right">Register</button>
+        <Link className="text-right" to={`/events/${events.id}`}>Details</Link>
       </div>
     </div>
   );
