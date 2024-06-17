@@ -9,6 +9,7 @@ This website is structured to ensure you can quickly find the information you ne
 We invite you to explore the various sections of our website and learn more about the CSE Department at the University of Dhaka. If you have any questions or need further assistance, please do not hesitate to contact us. Thank you for visiting and we look forward to connecting with you.
 
 
+
 # Requirement Analysis & Objectives
 
 ### I. Purpose
@@ -35,6 +36,7 @@ The intentions behind the CSE Department website are to:
 - **Facilitate Access to Information**: Ensure that all users can easily find the information they need, from course details to research publications.
 - **Foster Community Engagement**: Encourage participation in departmental events, seminars, and workshops and provide platforms for alumni and industry connections.
 - **Support Administrative Functions**: Streamline administrative processes such as course registration, fee payment and academic advising.
+
 
 
 # Exclusive Features
@@ -72,7 +74,11 @@ The website for our Department of Computer Science and Engineering (CSE) in the 
 15. **Customization**: This website can further be customized according to need and can be ingrate with other different websites or tools. It will make our website to always adaptable with the future updated tools and technologies.
 
 
+
+
+
 # Team Members Details and Responsibilities
+
 1. **Abdullah Ibne Hanif Arean (FH-12)**:
   - Prototype Designing
   - Making Proper APIs with FastAPI
@@ -108,7 +114,9 @@ The website for our Department of Computer Science and Engineering (CSE) in the 
   - Version Controlling
 
 
+
 # Platform, Library & Tools
+
   - [HTML](https://web.dev/learn/html) : Markup language for creating the structure of web pages.
   - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) : Style sheet language for designing the appearance of web pages.
   - [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html) : Syntax extension for JavaScript used with React for building user interfaces.
@@ -117,12 +125,33 @@ The website for our Department of Computer Science and Engineering (CSE) in the 
   - [MongoDB](https://www.mongodb.com/) : NoSQL database for storing and retrieving data in a flexible, JSON-like format.
   - [Git/Github](https://github.com/) : Version control platform for collaborative software development.
 
-  
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Plugins
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules. Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+
+# Limitations
+
+1. **Advanced Search Functionality**: Implementing a sophisticated search engine requires substantial technical resources and expertise. Ensuring accurate and relevant search results necessitates ongoing maintenance and optimization.
+
+2. **Real-Time Chat Support**: Providing real-time chat support requires a dedicated team available around the clock. Implementing and maintaining secure chat functionality involves significant technical challenges.
+
+3. **Multi-lingual Facilities**: Implementing multi-lingual support for the website requires significant translation efforts and resources. Ensuring consistent quality and accuracy across multiple languages can be challenging.
+
+4. **Data Analytics and Reporting Tools**: Implementing comprehensive data analytics tools requires specialized skills and resources. Ensuring data privacy and compliance with regulations when collecting and analyzing user data is critical.
+
+5. **Change of Modes**: Providing multiple modes (such as dark mode, light mode, and high-contrast mode) for the website involves additional design and development efforts. Ensuring a consistent user experience across all modes requires extensive testing and optimization.
+
+6. **Mobile App**: Developing and maintaining a mobile app for different platforms (iOS and Android) requires significant development effort. Ensuring the app remains updated with the website content involves continuous synchronization and support.
+
+
+
+# Conclusion & Future Work
+
+Apart from learning new languages, tools and technologies, this project taught us collaboration, pressure handling, peer communication, and many other important qualities a software engineer should have. We hope we can implement these learnings in our life in the future to become successful. We would like to add the fact that our project is customizable. So, if needed, anyone along with us can further customize it and make it live for our Computer Science and Engineering department at University of Dhaka.
