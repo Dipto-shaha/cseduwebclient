@@ -27,6 +27,7 @@ import Profile from "./Profile";
 import UpdateProfile from "./UpdateProfile";
 import PublicationForm from "./Admin/PublicationForm";
 import PublicationsTable from "./Admin/PublicationsTable";
+import Research from "./Research";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path:"/update",
         element:<UpdateProfile></UpdateProfile>
+      },
+      {
+        path:'/research',
+        element:<Research></Research>
       }
     ],
   },
