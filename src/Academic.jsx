@@ -10,7 +10,7 @@ const Academic = () => {
       <Banner title={selectedItem} activePage={selectedItem} />
       <div className="flex">
         <div className="w-4/5 my-10 mx-20">
-          <AccademicProgram></AccademicProgram>
+          <AccademicProgram programName={selectedItem}></AccademicProgram>
         </div> 
         <div className="w-1/5">
           <div className="pt-10">
