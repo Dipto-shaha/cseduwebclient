@@ -20,6 +20,7 @@ import Events from "./Events";
 import Club from "./Club";
 import Contact from "./Contact";
 import UsersTable from "./Admin/UsersTable";
+import NewsDetails from "./NewsDetails";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path:'/contact',
         element:<Contact></Contact>
+      },
+      {
+        path:'/news/:id',
+        element:<NewsDetails></NewsDetails>
       }
     ],
   },
