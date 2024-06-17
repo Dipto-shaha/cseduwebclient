@@ -4,8 +4,8 @@ import NewsCard from "./component/NewsCard";
 import useGetAllEvents from "./hook/Events/useGetAllEvents";
 import useGetAllNews from "./hook/News/useGetAllNews";
 const Home = () => {
-  const [news, setNewsList] = useGetAllNews();
-  const [events, setEventsList] = useGetAllEvents();
+  const [news, ] = useGetAllNews();
+  const [events, ] = useGetAllEvents();
   return (
     <div>
       <CarouselHome></CarouselHome>
