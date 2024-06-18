@@ -15,7 +15,8 @@ const NewsLong = ({ news }) => {
         <p>{news.date}</p>
         <p className="text-2xl font-semibold">{news.news_title}</p>
         <p>{news.description.length>=400 ? news.description.slice(0,400) +"...." : news.description }</p>
-        <Link className="text-right" to={`/news/${news.id}`}>Read More</Link>
+        <p className="py-2">        <Link className="text-right px-4 py-2 mt-10 rounded-lg bg-[#14264c] text-white" to={`/news/${news.id}`}>Read More</Link>
+        </p>
       </div>
     </div>
   );

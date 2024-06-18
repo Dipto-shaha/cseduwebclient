@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
   return (
@@ -9,17 +9,30 @@ const NewsCard = ({ news }) => {
         className="w-full h-[300px] rounded-lg"
         alt="News Photo"
       />
-      <p>{news.date}</p>
-      <p className="text-2xl font-semibold">{news.news_title}</p>
-      <p>{news.description.length>=200 ? news.description.slice(0,200) +"...." : news.description }</p>
-      <Link className="text-right" to={`/news/${news.id}`}>Read More</Link>
+      <div>
+        <p>{news.date}</p>
+        <p className="text-2xl font-semibold">{news.news_title}</p>
+        <p>
+          {news.description.length >= 200
+            ? news.description.slice(0, 200) + "...."
+            : news.description}
+        </p>
+        <p className="py-5">
+          <Link
+            className="text-right px-4 py-2 mt-10 rounded-lg bg-[#14264c] text-white"
+            to={`/news/${news.id}`}
+          >
+            Read More
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
 
 NewsCard.propTypes = {
   news: PropTypes.shape({
-    id:PropTypes.string,
+    id: PropTypes.string,
     photo: PropTypes.string,
     date: PropTypes.string,
     news_title: PropTypes.string,
@@ -28,4 +41,3 @@ NewsCard.propTypes = {
 };
 
 export default NewsCard;
-

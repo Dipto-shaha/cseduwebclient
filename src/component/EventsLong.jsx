@@ -15,12 +15,18 @@ const EventsLong = ({ events }) => {
       <div className="w-2/3 px-4 py-2">
         <p>{events.date}</p>
         <p className="text-2xl font-semibold">{events.event_title}</p>
-        <p>{events.description}</p>
-        <p>Time: {events.date_and_time}</p>
+        <p className='text-justify '>{events.description.length>=400 ? events.description.slice(0,400) +"...." : events.description }</p>
+      <div className='flex justify-between '>
+        <div>
+        <p>Date: {events.date_and_time}</p>
         <p className="flex items-center space-x-4 ">
           <FaLocationDot /> {events.venue}
         </p>
-        <Link className="text-right" to={`/events/${events.id}`}>Details</Link>
+        </div>
+        <div>
+        <p> <Link className="text-right px-4 py-2 mt-10 rounded-lg bg-[#14264c] text-white" to={`/events/${events.id}`}>Details</Link></p>
+        </div>
+      </div>
       </div>
     </div>
   );
