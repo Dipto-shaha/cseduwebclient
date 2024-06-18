@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Button, message } from 'antd';
+import { Card, Button, message, Image } from 'antd';
 import useGetAllEventResponses from "../hook/Events/useGetAllEventResponses";
-import useGetSingleEvents from "../hook/Events/useGetSingleEvents";
+import useGetSingleEvent from "../hook/Events/useGetSingleEvents"
 import acceptResponse from "../hook/Events/acceptResponse";
 import rejectResponse from "../hook/Events/rejectResponse";
 
 const EventResponses = () => {
     const { id } = useParams();
-    const [event] = useGetSingleEvents(id);
+    const [event] = useGetSingleEvent(id);
     const [eventResponses] = useGetAllEventResponses(id);
 
     const handleAccept = async (responseId) => {
@@ -31,16 +31,28 @@ const EventResponses = () => {
         }
     };
 
+    if (!event) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div>
             <div>
-                <Button type="primary" style={{ marginBottom: 16 }}>
+                <Button type="primary" onClick={() => history.goBack()} style={{ marginBottom: 16 }}>
                     Back
                 </Button>
-                
             </div>
-            <h1>{event['event_title']}</h1>
-            <p>{event['description']}</p>
+            <h1>{event.event_title}</h1>
+            <Card
+                style={{ marginBottom: 16 }}
+                cover={<Image src={event.photo} alt={event.event_title} />}
+            >
+                <p><strong>Date:</strong> {event.date}</p>
+                <p><strong>Time:</strong> {event.date_and_time}</p>
+                <p><strong>Venue:</strong> {event.venue}</p>
+                <p><strong>Description:</strong></p>
+                <p>{event.description}</p>
+            </Card>
             <div className="response-list">
                 {eventResponses.map(response => (
                     <Card
@@ -58,12 +70,12 @@ const EventResponses = () => {
                         }
                         style={{ marginBottom: 16 }}
                     >
-                        <p>Email: {response.email}</p>
-                        <p>Phone: {response.phone}</p>
-                        <p>Amount: {response.amount}</p>
-                        <p>Transaction ID: {response.trxId}</p>
-                        <p>Comment: {response.comment}</p>
-                        <p>Status: {response.status}</p>
+                        <p><strong>Email:</strong> {response.email}</p>
+                        <p><strong>Phone:</strong> {response.phone}</p>
+                        <p><strong>Amount:</strong> {response.amount}</p>
+                        <p><strong>Transaction ID:</strong> {response.trxId}</p>
+                        <p><strong>Comment:</strong> {response.comment}</p>
+                        <p><strong>Status:</strong> {response.status}</p>
                     </Card>
                 ))}
             </div>
