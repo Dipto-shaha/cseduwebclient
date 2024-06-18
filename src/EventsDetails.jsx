@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import useGetSingleEvents from "./hook/Events/useGetSingleEvents";
 import { FaLocationDot } from "react-icons/fa6";
 import { Button, Modal, Form, Input } from "antd";
-import { toast } from "react-toastify";
 import useGetUserInfo from "./hook/useGetUserInfo";
+import { toast } from "react-toastify";
 
 const EventsDetails = () => {
   const { id } = useParams();
@@ -80,7 +80,7 @@ const EventsDetails = () => {
           <Form.Item
             name="email"
             label="Email"
-            initialValue={user.email}
+            initialValue={user?.email}
             rules={[{ required: true, message: 'Please input your email!' }, { type: 'email', message: 'Please enter a valid email!' }]}
           >
             <Input />
@@ -88,7 +88,7 @@ const EventsDetails = () => {
           <Form.Item
             name="name"
             label="Name"
-            initialValue={user.first_name+" "+ user.last_name}
+            initialValue={user?.first_name+" "+ user?.last_name}
             rules={[{ required: true, message: 'Please input your name!' }]}
           >
             <Input />
@@ -96,7 +96,7 @@ const EventsDetails = () => {
           <Form.Item
             name="phone"
             label="Phone"
-            initialValue={user.contact}
+            initialValue={user?.contact}
             rules={[{ required: true, message: 'Please input your phone number!' }]}
           >
             <Input />
