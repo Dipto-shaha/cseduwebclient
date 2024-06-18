@@ -1,13 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Button, message, Image } from 'antd';
+import { Row, Col, Card, Button, message, Image } from 'antd';
 import useGetAllEventResponses from "../hook/Events/useGetAllEventResponses";
-import useGetSingleEvent from "../hook/Events/useGetSingleEvents"
+import useGetSingleEvent from "../hook/Events/useGetSingleEvents";
 import acceptResponse from "../hook/Events/acceptResponse";
 import rejectResponse from "../hook/Events/rejectResponse";
 
 const EventResponses = () => {
     const { id } = useParams();
+    // const history = useHistory();
     const [event] = useGetSingleEvent(id);
     const [eventResponses] = useGetAllEventResponses(id);
 
@@ -42,17 +43,21 @@ const EventResponses = () => {
                     Back
                 </Button>
             </div>
-            <h1>{event.event_title}</h1>
-            <Card
-                style={{ marginBottom: 16 }}
-                cover={<Image src={event.photo} alt={event.event_title} />}
-            >
-                <p><strong>Date:</strong> {event.date}</p>
-                <p><strong>Time:</strong> {event.date_and_time}</p>
-                <p><strong>Venue:</strong> {event.venue}</p>
-                <p><strong>Description:</strong></p>
-                <p>{event.description}</p>
-            </Card>
+            <span style={{fontWeight: 800, fontSize: 60}}>{event.event_title}</span>
+            <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Col span={16}>
+                    <Card>
+                        <p><strong>Date:</strong> {event.date}</p>
+                        <p><strong>Time:</strong> {event.date_and_time}</p>
+                        <p><strong>Venue:</strong> {event.venue}</p>
+                        <p><strong>Description:</strong></p>
+                        <p>{event.description}</p>
+                    </Card>
+                </Col>
+                <Col span={8}>
+                    <Image src={event.photo} alt={event.event_title} width="100%" />
+                </Col>
+            </Row>
             <div className="response-list">
                 {eventResponses.map(response => (
                     <Card
