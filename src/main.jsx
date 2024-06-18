@@ -36,6 +36,7 @@ import ContactMessage from "./Admin/ContactMessage";
 import Faculty from "./Faculty";
 import Staff from "./Staff";
 import FacultyDeatails from "./FacultyDeatails";
+import EventResponses from "./Admin/EventResponses";
 
 const router = createBrowserRouter([
   {
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/event",
         element: <EventsTable></EventsTable>,
+      },
+      {
+        path: "/dashboard/eventresponses/:id",
+        element: <EventResponses></EventResponses>,
       },
       {
         path: "/dashboard/addevents",

@@ -64,6 +64,11 @@ const EventsTable = () => {
           <Button danger onClick={() => handleDelete(record?.id)}>
             Delete
           </Button>
+          <Button>
+            <Link to={`/dashboard/eventresponses/${record?.id}`}>
+              Responses
+            </Link>
+          </Button>
         </Space>
       ),
     },
