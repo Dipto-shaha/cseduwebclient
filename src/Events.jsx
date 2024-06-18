@@ -1,3 +1,4 @@
+import Banner from "./component/Banner";
 import EventsLong from "./component/EventsLong";
 import useGetAllEvents from "./hook/Events/useGetAllEvents";
 import  { useState } from 'react';
@@ -17,6 +18,7 @@ const Events = () => {
   };
 
   return (
+    <><Banner title={"Events"} activePage={"Events"} />
     <div className="mx-10 my-10 space-y-5">
        {currentEvents.map((item) => {
         return <EventsLong events={item} key={item.id}></EventsLong>;
@@ -41,6 +43,7 @@ const Events = () => {
         activeLinkClassName={' bg-[#ecb31d] text-white'}
       />
     </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import NewsLong from './component/NewsLong';
 import useGetAllNews from './hook/News/useGetAllNews';
 import ReactPaginate from 'react-paginate';
+import Banner from './component/Banner';
 
 const News = () => {
   const [news,] = useGetAllNews();
@@ -17,7 +18,9 @@ const News = () => {
   };
 
   return (
-    <div className="mx-10 my-10 space-y-5">
+    <div>
+      <Banner title={"News"} activePage={"News"} />
+      <div className="mx-10 my-10 space-y-5">
       {currentNews.map((item) => {
         return <NewsLong news={item} key={item.id} />;
       })}
@@ -40,6 +43,7 @@ const News = () => {
         activeClassName={'active'}
         activeLinkClassName={' bg-[#ecb31d] text-white'}
       />
+    </div>
     </div>
   );
 };

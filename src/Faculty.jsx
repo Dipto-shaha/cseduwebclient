@@ -1,5 +1,6 @@
 import  { useEffect, useState } from 'react';
-import { Card, Spin, message } from 'antd';
+import { Card, Spin,  } from 'antd';
+import { Link } from 'react-router-dom';
 import useAxiosPrivate from './hook/useAxiosPrivate';
 
 const Faculty = () => {
@@ -53,7 +54,7 @@ const Faculty = () => {
               </div>
             }
           />
-          <button className="text-right px-4 py-2 mt-10 rounded-lg bg-[#14264c] text-white">Details</button>
+          <Link to={`/people/faculty/${teacher.id}`}><button className="text-right px-4 py-2 mt-10 rounded-lg bg-[#14264c] text-white">Details</button></Link>
         </Card>
       ))}
     </div>

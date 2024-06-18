@@ -35,6 +35,7 @@ import AddAlumni from "./Admin/AddAlumni";
 import ContactMessage from "./Admin/ContactMessage";
 import Faculty from "./Faculty";
 import Staff from "./Staff";
+import FacultyDeatails from "./FacultyDeatails";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
         path:'/people/staff',
         element:<Staff></Staff>
       },
+      {
+        path:'/people/faculty/:id',
+        element:<FacultyDeatails></FacultyDeatails>
+      }
 
     ],
   },
