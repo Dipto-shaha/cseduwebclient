@@ -15,7 +15,7 @@ const ForgetPassword = () => {
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/reset-password/initiate", {
+      const res = await axios.post("/auth/reset-password-init", {
         email,
       });
       console.log(res);
@@ -40,7 +40,7 @@ const ForgetPassword = () => {
       return;
     }
     try {
-      const response = await axios.post("/auth/reset-password/confirm", {
+      const response = await axios.post("/auth/reset-password-confirm", {
         email,
         enteredOTP: otp,
         newPassword,

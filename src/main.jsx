@@ -28,6 +28,7 @@ import UpdateProfile from "./UpdateProfile";
 import PublicationForm from "./Admin/PublicationForm";
 import PublicationsTable from "./Admin/PublicationsTable";
 import Research from "./Research";
+import DashboardStat from "./Admin/DashboardStat";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      {
+        path:"/dashboard",
+        element:<DashboardStat></DashboardStat>
+      },
       {
         path: "/dashboard/news",
         element: <NewsTable></NewsTable>,
