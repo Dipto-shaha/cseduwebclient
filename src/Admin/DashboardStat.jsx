@@ -40,7 +40,7 @@ const DashboardStat = () => {
               key={key}
               className="w-40 h-24 shadow-lg flex flex-col justify-center items-center rounded-xl"
             >
-              <p className="text-2xl">{key}</p>
+              <p className="text-2xl capitalize">{key}</p>
               <p className="text-3xl font-bold">{value}</p>
             </div>
           ))}

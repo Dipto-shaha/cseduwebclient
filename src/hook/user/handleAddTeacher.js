@@ -1,5 +1,4 @@
 const handleAddTeacher = async (axios, formData) => {
-    console.log(axios);
     try {
       const res = await axios.post("/teacher/add", formData);
       console.log(res)

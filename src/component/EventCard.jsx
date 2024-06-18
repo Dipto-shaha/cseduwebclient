@@ -12,12 +12,18 @@ const EventCard = ({ events }) => {
       />
       <p>{events.date}</p>
       <p className="text-2xl font-semibold">{events.event_title}</p>
-      <p>{events.description}</p>
-      <p>Date: {events.date_and_time}</p>
-      <p className="flex items-center space-x-4 ">
-        <FaLocationDot /> {events.venue}
-      </p>
-      <Link className="text-right" to={`/events/${events.id}`}>Details</Link>
+      <p className='text-justify '>{events.description.length>=200 ? events.description.slice(0,200) +"...." : events.description }</p>
+      <div className='flex justify-between '>
+        <div>
+        <p>Date: {events.date_and_time}</p>
+        <p className="flex items-center space-x-4 ">
+          <FaLocationDot /> {events.venue}
+        </p>
+        </div>
+        <div>
+        <p> <Link className="text-right px-4 py-2 mt-10 rounded-lg bg-[#14264c] text-white" to={`/events/${events.id}`}>Details</Link></p>
+        </div>
+      </div>
     </div>
   );
 };

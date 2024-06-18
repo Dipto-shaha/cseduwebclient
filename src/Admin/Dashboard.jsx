@@ -183,7 +183,7 @@ const Dashboard = () => {
               textAlign: "center",
             }}
           >
-            CSEDU ©{new Date().getFullYear()} Created by DU_UnstaifiedSouls
+            ©{new Date().getFullYear()} Department of Computer Science and Engineering, University of Dhaka, Dhaka, Bangladesh
           </Footer>
         </Layout>
       </Layout>
