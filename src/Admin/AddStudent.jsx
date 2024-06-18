@@ -27,7 +27,7 @@ const AddStudent = () => {
     const res = await handleAddStudent(axios, studentInfo);
     if (res.success) {
       message.success("Student Profile Added");
-      navigate('/dashboard/students');
+      navigate('/dashboard/users');
     } else {
       message.error("Something went wrong");
     }

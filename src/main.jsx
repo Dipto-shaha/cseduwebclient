@@ -33,6 +33,8 @@ import AddStaff from "./Admin/AddStaff";
 import AddStudent from "./Admin/AddStudent";
 import AddAlumni from "./Admin/AddAlumni";
 import ContactMessage from "./Admin/ContactMessage";
+import Faculty from "./Faculty";
+import Staff from "./Staff";
 
 const router = createBrowserRouter([
   {
@@ -86,7 +88,16 @@ const router = createBrowserRouter([
       {
         path:'/research',
         element:<Research></Research>
-      }
+      },
+      {
+        path:'/people/faculty',
+        element:<Faculty></Faculty>
+      },
+      {
+        path:'/people/staff',
+        element:<Staff></Staff>
+      },
+
     ],
   },
   {

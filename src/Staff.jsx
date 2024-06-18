@@ -1,8 +1,8 @@
 import  { useEffect, useState } from 'react';
-import { Card, Spin, message } from 'antd';
+import { Card, Spin, } from 'antd';
 import useAxiosPrivate from './hook/useAxiosPrivate';
 
-const Faculty = () => {
+const Staff = () => {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
   const axios = useAxiosPrivate();
@@ -10,7 +10,7 @@ const Faculty = () => {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get('/teacher/all'); 
+        const response = await axios.get('/staff/all'); 
         if (response.data.code === 200) {
           setTeachers(response.data.data);
         //   message.success(response.data.message);
@@ -60,4 +60,4 @@ const Faculty = () => {
   );
 };
 
-export default Faculty;
+export default Staff;
