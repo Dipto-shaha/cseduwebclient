@@ -15,7 +15,7 @@ const DashboardStat = () => {
       const data = response.data;
       setCountInfo(data);
       setChartData(
-        Object.entries(data.user_stats).map(([role, count], index) => ({
+        Object.entries(data.user_stats).map(([role, count], index) => ( role!="total" &&{
           name: role,
           value: count,
           color: COLORS[index % COLORS.length],
@@ -33,7 +33,7 @@ const DashboardStat = () => {
   return (
     <>
       <div className="mx-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-2 items-center">
           {Object.entries(countInfo.user_stats || {}).map(([key, value]) => (
             key!="total" &&
             <div
@@ -46,8 +46,8 @@ const DashboardStat = () => {
           ))}
         </div>
       </div>
-      <div className="lg:w-1/2 mt-10 border-2">
-        <div className="flex justify-center">
+      <div className="lg:w-1/2 mt-10 ">
+        <div className="flex justify-center flex-col">
           <PieChart width={300} height={400}>
             <Pie
               data={charData}
@@ -64,6 +64,9 @@ const DashboardStat = () => {
             </Pie>
             <Tooltip />
           </PieChart>
+          <div className="text-2xl font-semibold ml-40 -mt-32 ">
+            Role Count
+          </div>
         </div>
       </div>
     </>

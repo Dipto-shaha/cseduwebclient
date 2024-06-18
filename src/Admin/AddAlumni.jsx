@@ -26,7 +26,7 @@ const AddAlumni = () => {
     const res = await handleAddAlumni(axios, alumniInfo);
     if (res.success) {
       message.success("Alumni Profile Added");
-      navigate('/dashboard/alumni');
+      navigate('/dashboard/users');
     } else {
       message.error("Something went wrong");
     }

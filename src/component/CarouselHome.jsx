@@ -18,14 +18,14 @@ const CarouselHome = () => {
       </div>
       <div className="h-[400px] flex items-center justify-center">
         <img
-          src="https://i.ibb.co/qWFkvjV/CSEDU.jpg"
+          src="/Img/curzon.jpeg"
           alt="Keyboard"
           className="max-h-full"
         />
       </div>
       <div className="h-[400px] flex items-center justify-center">
         <img
-          src="https://i.ibb.co/qWFkvjV/CSEDU.jpg"
+          src="https://ssl.du.ac.bd/fontView/images/slider/1710156332ProVC.jpg"
           alt="Cat"
           className="max-h-full"
         />
