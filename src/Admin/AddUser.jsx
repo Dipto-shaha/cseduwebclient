@@ -19,6 +19,14 @@ const AddUser = () => {
        toast.success("User Added Successfully");
        if(values.role=="teacher")
           navigate(`/dashboard/add-teacher/${res.data.id}`);
+        else if(values.role=="student")
+          navigate(`/dashboard/add-student/${res.data.id}`);
+        else if(values.role=="alumni")
+          navigate(`/dashboard/add-alumni/${res.data.id}`);
+        else if(values.role=="staff")
+          navigate(`/dashboard/add-staff/${res.data.id}`);
+        else
+          navigate('/dashboard/users');
     }
     setLoading(false);
 

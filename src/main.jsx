@@ -29,6 +29,9 @@ import PublicationForm from "./Admin/PublicationForm";
 import PublicationsTable from "./Admin/PublicationsTable";
 import Research from "./Research";
 import DashboardStat from "./Admin/DashboardStat";
+import AddStaff from "./Admin/AddStaff";
+import AddStudent from "./Admin/AddStudent";
+import AddAlumni from "./Admin/AddAlumni";
 
 const router = createBrowserRouter([
   {
@@ -132,6 +135,18 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/add-teacher/:id",
         element:<AddTeacher></AddTeacher>
+      },
+      {
+        path:"/dashboard/add-student/:id",
+        element:<AddStudent></AddStudent>
+      },
+      {
+        path:"/dashboard/add-staff/:id",
+        element:<AddStaff></AddStaff>
+      },
+      {
+        path:"/dashboard/add-alumni/:id",
+        element:<AddAlumni></AddAlumni>
       },
       {
         path:"/dashboard/add-publication",
