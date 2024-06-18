@@ -32,6 +32,7 @@ import DashboardStat from "./Admin/DashboardStat";
 import AddStaff from "./Admin/AddStaff";
 import AddStudent from "./Admin/AddStudent";
 import AddAlumni from "./Admin/AddAlumni";
+import ContactMessage from "./Admin/ContactMessage";
 
 const router = createBrowserRouter([
   {
@@ -155,6 +156,10 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/publications',
         element:<PublicationsTable></PublicationsTable>
+      },
+      {
+        path:"/dashboard/message",
+        element:<ContactMessage></ContactMessage>
       }
     ],
   },

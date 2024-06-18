@@ -14,7 +14,7 @@ const Contact = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     console.log("Form values", values);
-    const res = await axios("http://localhost:8000/message/add");
+    const res = await axios.post("http://localhost:8000/message/add",values);
     setLoading(false);
     if (res.ok) {
       notification.success({
