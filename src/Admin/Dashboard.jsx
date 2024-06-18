@@ -51,6 +51,11 @@ const itemsList = {
     },
     {
       icon: <UserAddOutlined></UserAddOutlined>,
+      label: "Add Publications",
+      link: "/dashboard/add-publication",
+    },
+    {
+      icon: <UserAddOutlined></UserAddOutlined>,
       label: "Publications",
       link: "/dashboard/publications",
     },

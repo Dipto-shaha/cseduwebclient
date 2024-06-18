@@ -77,7 +77,7 @@ const Footer = () => {
 
       <div className="text-center mt-8">
         <p>
-          @2023 Department of Computer Science and Engineering, University of
+          @{new Date().getFullYear()} Department of Computer Science and Engineering, University of
           Dhaka, Dhaka, Bangladesh
         </p>
       </div>
