@@ -6,20 +6,22 @@ import {
   FaClock,
 } from "react-icons/fa";
 import { Button, Form, Input, notification, Spin } from "antd";
+import useAxiosPrivate from "./hook/useAxiosPrivate";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
-
+  const axios = useAxiosPrivate()
   const handleSubmit = async (values) => {
     setLoading(true);
     console.log("Form values", values);
-    setTimeout(() => {
-      setLoading(false);
+    const res = await axios("http://localhost:8000/message/add");
+    setLoading(false);
+    if (res.ok) {
       notification.success({
         message: "Message Sent",
         description: "Your message has been sent successfully.",
       });
-    }, 2000);
+    }
   };
 
   return (
@@ -69,7 +71,11 @@ const Contact = () => {
           <h2 className="text-2xl mt-2 mb-4">We love to hear from you</h2>
         </div>
         <div className="flex justify-evenly ">
-          <Form className="w-3/5 space-y-4" onFinish={handleSubmit} layout="vertical">
+          <Form
+            className="w-3/5 space-y-4"
+            onFinish={handleSubmit}
+            layout="vertical"
+          >
             <Form.Item
               name="name"
               label="Your Name"
@@ -112,53 +118,49 @@ const Contact = () => {
               </Button>
             </Form.Item>
           </Form>
-          <div className=" mt-8 space-y-4">
-            <div className="flex items-center space-x-4">
+          <div className=" space-y-4 ">
+            <div className="flex items-center space-x-4  border-2  py-4 px-5 bg-white rounded-lg">
               <img
-                src="/Img/Charman.jpg"
+                src="/Img/razaak.jpeg"
                 alt="President"
                 className="w-16 h-16 rounded-full"
               />
               <p>
-                <span className="font-semibold">Dr. Saifuddin Md. Tareeq</span>
+                <span className="font-semibold"></span>
                 <br />
-                President of CSEDUAA
+                Charimain of CSEDU
                 <br />
-                Phone: 017#####
-                <br />
-                Email: sample@gmail.com
+                Email: charimain@cse.du.ac.bd
               </p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4  border-2 bg-white rounded-lg  py-4 px-5">
               <img
-                src="/Img/rezvi.jpg"
-                alt="Vice President"
+                src="/Img/tanvir.jpeg"
+                alt="Student Advisior"
                 className="w-16 h-16 rounded-full"
               />
               <p>
-                <span className="font-semibold">Redwan Ahmed Rizvee</span>
+                <span className="font-semibold">Md. Tanvir Alam</span>
                 <br />
-                Vice President of CSEDUAA
+                Student Advisior
                 <br />
-                Phone: 017#####
-                <br />
-                Email: sample@gmail.com
+                Email: tanvir@cse.du.ac.bd
               </p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4  border-2 bg-white rounded-lg px-5 py-4">
               <img
                 src="/Img/profile.jpg"
                 alt="Secretary"
                 className="w-16 h-16 rounded-full"
               />
               <p>
-                <span className="font-semibold">Mr.X Shaha</span>
+                <span className="font-semibold">Dipto Shaha</span>
                 <br />
-                Secretary of CSEDUAA
+                Student Reprentative
                 <br />
-                Phone: 017#####
+                Phone: 01770891974
                 <br />
-                Email: sample@gmail.com
+                Email: diptoshaha2635@gmail.com
               </p>
             </div>
           </div>
