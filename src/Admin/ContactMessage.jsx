@@ -67,7 +67,7 @@ const ContactMessage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 p-4">
-      <p>User Message form Contact Page</p>
+      <p className=' text-center py-4 text-2xl'>User Message form Contact Page</p>
       <Card className="w-full mb-4">
         <Table
           dataSource={messages}
