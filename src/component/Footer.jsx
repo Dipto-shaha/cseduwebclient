@@ -40,10 +40,18 @@ const Footer = () => {
           <div className="mt-4">
             <h4 className="text-xl mb-2">Follow us</h4>
             <div className="flex space-x-4">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaYoutube />
+              <a href="https://www.facebook.com/Dept.CSE.DU/" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+              </a>
+              <a href="https://x.com/lrtajvirsingh?mx=2" target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
+              </a>
+              <a href="https://www.instagram.com/explore/locations/422219917/department-of-computer-science-engineering-university-of-dhaka---csedu/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://www.youtube.com/watch?v=FhWrTOKBNNE&ab_channel=AbdullahArean" target="_blank" rel="noopener noreferrer">
+                <FaYoutube />
+              </a>
             </div>
           </div>
         </div>
