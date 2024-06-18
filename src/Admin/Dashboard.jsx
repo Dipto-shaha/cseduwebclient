@@ -6,12 +6,9 @@ import {
   UserOutlined,
   HomeOutlined,
   BookOutlined,
-  UserDeleteOutlined,
   UserAddOutlined,
-  TruckOutlined,
   BlockOutlined,
 } from "@ant-design/icons";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CiLogout } from "react-icons/ci";
@@ -66,6 +63,11 @@ const itemsList = {
       label: "Add Publications",
       link: "/dashboard/add-publication",
     },
+    {
+      icon: <UserAddOutlined></UserAddOutlined>,
+      label: "Message",
+      link: "/dashboard/message",
+    }
     
   ]
 };
