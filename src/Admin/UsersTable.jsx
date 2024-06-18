@@ -1,6 +1,5 @@
 import { Table, Button, Space, Input, Select } from "antd";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import useGetAllUsers from "../hook/user/useGetAllUsers";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
