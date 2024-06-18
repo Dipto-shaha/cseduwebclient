@@ -1,6 +1,6 @@
-const handleEventsPost = async (axios, formData) => {
+const handleEventRegistation = async (axios, id, formData) => {
     try {
-      const res = await axios.post("/event/add", formData);
+      const res = await axios.post(`/event/register/private/${id}`, formData);
       console.log(res)
       return true;
     } catch (err) {
@@ -9,5 +9,5 @@ const handleEventsPost = async (axios, formData) => {
     }
   };
   
-  export default handleEventsPost;
+  export default handleEventRegistation;
   

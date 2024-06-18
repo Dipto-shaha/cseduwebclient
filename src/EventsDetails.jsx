@@ -5,6 +5,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Button, Modal, Form, Input } from "antd";
 import useGetUserInfo from "./hook/useGetUserInfo";
 import { toast } from "react-toastify";
+import useAxiosPrivate from "./hook/useAxiosPrivate";
+import handleEventRegistation from "./hook/Events/handleEventRegistration";
 
 const EventsDetails = () => {
   const { id } = useParams();
@@ -27,6 +29,7 @@ const EventsDetails = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const axios = useAxiosPrivate();
 
   const onFinish = async(values) => {
     console.log('Form values: ', values);
@@ -41,7 +44,11 @@ const EventsDetails = () => {
         "trxId": values.trxId,
         "user_id": user.id
     }
-    const res = await 
+    const res = await handleEventRegistation(axios,id,registerData);
+    if(res){
+      toast.success("Success, You will get a confirmation maill");
+    }
+    else toast.error("Somthing went wrong");
     setIsModalVisible(false);
   };
 

@@ -8,7 +8,7 @@ import useGetUserInfo from "../hook/useGetUserInfo";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [openSubNav, setOpenSubNav] = useState(null);
-  const [user,,loading]= useGetUserInfo();
+  const [user, , loading] = useGetUserInfo();
   const handleNav = () => {
     setNav(!nav);
   };
@@ -62,7 +62,10 @@ const Navbar = () => {
                 </span>
                 <ul className="absolute left-0 top-full hidden bg-[#d2dde2] rounded-lg shadow-lg group-hover:block">
                   {item.subItems.map((subItem) => (
-                    <li key={subItem.id} className="p-2 hover:bg-gray-200 rounded-lg">
+                    <li
+                      key={subItem.id}
+                      className="p-2 hover:bg-gray-200 rounded-lg"
+                    >
                       <Link to={subItem.path}>{subItem.text}</Link>
                     </li>
                   ))}
@@ -75,12 +78,17 @@ const Navbar = () => {
             )
           )}
         </ul>
-        { !user ? <Link to="/login" onClick={handleNav}>
-                      <Button>Log In</Button>
-                    </Link>
-                    :
-                    <NavberProfile user={user}  loading={loading} />
-        }
+        {!loading && (
+          <div>
+            {!user ? (
+              <Link to="/login" onClick={handleNav}>
+                <Button>Log In</Button>
+              </Link>
+            ) : (
+              <NavberProfile user={user} loading={loading} />
+            )}
+          </div>
+        )}
       </div>
 
       {/* Mobile Navigation Icon */}
@@ -111,7 +119,10 @@ const Navbar = () => {
                 {openSubNav === item.id && (
                   <ul className="mt-2">
                     {item.subItems.map((subItem) => (
-                      <li key={subItem.id} className="py-1 hover:text-[#EDB516]">
+                      <li
+                        key={subItem.id}
+                        className="py-1 hover:text-[#EDB516]"
+                      >
                         <Link to={subItem.path} onClick={handleNav}>
                           {subItem.text}
                         </Link>
@@ -121,22 +132,27 @@ const Navbar = () => {
                 )}
               </li>
             ) : (
-              <li key={item.id} className="p-4 w-full text-center font-bold hover:text-[#EDB516]">
+              <li
+                key={item.id}
+                className="p-4 w-full text-center font-bold hover:text-[#EDB516]"
+              >
                 <Link to={item.path} onClick={handleNav}>
                   {item.text}
                 </Link>
               </li>
             )
           )}
-          <li className="p-4 w-full text-center">
-            { !user ? <Link to="/login" onClick={handleNav}>
-                      <Button>Log In</Button>
-                    </Link>
-                    :
-                    <NavberProfile user={user} loading={loading} />
-            }
-          </li>
-
+          {!loading && (
+            <div>
+              {!user ? (
+                <Link to="/login" onClick={handleNav}>
+                  <Button>Log In</Button>
+                </Link>
+              ) : (
+                <NavberProfile user={user} loading={loading} />
+              )}
+            </div>
+          )}
         </ul>
       </div>
     </div>
