@@ -1,10 +1,17 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
+  SnippetsOutlined,
+  AuditOutlined,
+  AppstoreAddOutlined,
   UserOutlined,
+  HomeOutlined,
+  BookOutlined,
   UserDeleteOutlined,
   UserAddOutlined,
   TruckOutlined,
+  BlockOutlined,
 } from "@ant-design/icons";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CiLogout } from "react-icons/ci";
@@ -20,29 +27,34 @@ import useGetUserInfo from "../hook/useGetUserInfo";
 const itemsList = {
   "Admin": [
     {
-      icon: <UserOutlined></UserOutlined>,
+      icon: <SnippetsOutlined></SnippetsOutlined>,
       label: "Dashboard",
       link: "/dashboard",
     },
     {
-      icon: <UserOutlined></UserOutlined>,
+      icon: <HomeOutlined></HomeOutlined>,
       label: "Home",
       link: "/",
     },
     {
-      icon: <UserOutlined></UserOutlined>,
-      label: "Event",
+      icon: <AuditOutlined></AuditOutlined>,
+      label: "Events",
       link: "/dashboard/event",
     },
     {
-      icon: <TruckOutlined></TruckOutlined>,
+      icon: <AppstoreAddOutlined></AppstoreAddOutlined>,
       label: "News",
       link: "/dashboard/news",
     },
     {
-      icon: <UserDeleteOutlined></UserDeleteOutlined>,
+      icon: <UserOutlined></UserOutlined>,
       label: "Users",
       link: "/dashboard/users",
+    },
+    {
+      icon: <BookOutlined></BookOutlined>,
+      label: "Publications",
+      link: "/dashboard/publications",
     },
     {
       icon: <UserAddOutlined></UserAddOutlined>,
@@ -50,20 +62,11 @@ const itemsList = {
       link: "/dashboard/adduser",
     },
     {
-      icon: <UserAddOutlined></UserAddOutlined>,
+      icon: <BlockOutlined></BlockOutlined>,
       label: "Add Publications",
       link: "/dashboard/add-publication",
     },
-    {
-      icon: <UserAddOutlined></UserAddOutlined>,
-      label: "Publications",
-      link: "/dashboard/publications",
-    },
-    {
-      icon: <UserAddOutlined></UserAddOutlined>,
-      label: "Message",
-      link: "/dashboard/message",
-    }
+    
   ]
 };
 const Dashboard = () => {
